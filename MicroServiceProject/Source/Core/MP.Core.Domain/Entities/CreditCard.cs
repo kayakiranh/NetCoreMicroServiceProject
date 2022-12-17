@@ -3,6 +3,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MP.Core.Domain.Entities
 {
+    /// <summary>
+    /// Credit card class based base entity.
+    /// Banks insert credit cards
+    /// Banks determine to limits and minimum financial score. Like an American Express credit cards needed higher financial scores.
+    /// </summary>
     [Serializable]
     public class CreditCard : BaseEntity
     {

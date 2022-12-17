@@ -8,6 +8,6 @@ namespace MP.Core.Application.Repositories
     /// </summary>
     public interface ILoggerRepository
     {
-        void Insert(LogTypes logType, string message, Exception exception = null);
+        void Insert(LogTypes logType, string message, Exception exception = null, params object[] methodParameters);
     }
 }

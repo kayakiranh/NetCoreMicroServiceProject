@@ -3,6 +3,9 @@ using System;
 
 namespace MP.Core.Application.DataTransferObjects
 {
+    /// <summary>
+    /// Customer data transfer object
+    /// </summary>
     [Serializable]
     public class CustomerDto : BaseEntity
     {

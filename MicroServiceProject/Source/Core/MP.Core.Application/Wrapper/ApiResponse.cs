@@ -7,14 +7,18 @@ using System.Reflection;
 
 namespace MP.Core.Application.Wrapper
 {
+    /// <summary>
+    /// Api response. All api's must return these response type.
+    /// 2 overrided error, 2 overrided success response.
+    /// </summary>
     [Serializable]
     public class ApiResponse
     {
-        public bool Status { get; set; }
-        public string Message { get; set; } = string.Empty;
-        public string Created { get; set; } = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-        public object Result { get; set; }
-        public int ResultCount { get; set; }
+        public bool Status { get; set; } //True/False
+        public string Message { get; set; } = string.Empty; //Additional info
+        public string Created { get; set; } = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"); //Response generated time
+        public object Result { get; set; } //Response data
+        public int ResultCount { get; set; } //Result count
 
         public static ApiResponse ErrorResponse(Exception ex)
         {

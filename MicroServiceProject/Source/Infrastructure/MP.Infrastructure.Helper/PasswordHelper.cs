@@ -2,11 +2,13 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
-
 namespace MP.Infrastructure.Helper
 {
     /// <summary>
     /// Password encyrpt helper
+    /// Convert salt to Sha256 type string
+    /// Convert password to Sha256 type string
+    /// Convert all to Sha256 type string
     /// </summary>
     [Serializable]
     public static class PasswordHelper
@@ -31,7 +33,7 @@ namespace MP.Infrastructure.Helper
 
         public static string Encrypt(this string password)
         {
-            if (string.IsNullOrEmpty(password)) return string.Empty;
+            if (password.StringSecurityValidation() == "") return string.Empty;
             password = password.Trim();
 
             HtmlSanitizer htmlSanitizer = new();

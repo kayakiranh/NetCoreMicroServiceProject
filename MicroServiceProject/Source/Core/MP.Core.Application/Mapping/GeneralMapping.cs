@@ -5,6 +5,10 @@ using System;
 
 namespace MP.Core.Application.Mapping
 {
+    /// <summary>
+    /// Automapper, mapping class
+    /// ReverseMap for mapping 2 sides.
+    /// </summary>
     [Serializable]
     public class GeneralMapping : Profile
     {

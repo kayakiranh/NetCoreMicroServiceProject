@@ -2,6 +2,9 @@
 
 namespace MP.Infrastructure.Helper
 {
+    /// <summary>
+    /// Api response text helper
+    /// </summary>
     [Serializable]
     public static class ApiResponseTextHelper
     {

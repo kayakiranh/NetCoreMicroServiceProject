@@ -3,6 +3,9 @@ using System;
 
 namespace MP.Core.Application.DataTransferObjects
 {
+    /// <summary>
+    /// Credit card data transfer object
+    /// </summary>
     [Serializable]
     public class CreditCardDto : BaseEntity
     {

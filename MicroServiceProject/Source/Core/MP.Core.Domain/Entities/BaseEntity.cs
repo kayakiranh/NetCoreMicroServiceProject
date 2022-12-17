@@ -4,6 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MP.Core.Domain.Entities
 {
+    /// <summary>
+    /// Base entity, carry common properties to related classes.
+    /// </summary>
     [Serializable]
     public class BaseEntity
     {

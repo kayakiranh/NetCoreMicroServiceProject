@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MP.Core.Domain.Entities
 {
+    /// <summary>
+    /// Customer class based base entity.
+    /// Customer login app then they could apply what credit card want.
+    /// </summary>
     [Serializable]
     public class Customer : BaseEntity
     {

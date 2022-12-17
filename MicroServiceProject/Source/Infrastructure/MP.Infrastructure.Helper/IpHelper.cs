@@ -6,7 +6,8 @@ using System.Text.Json.Serialization;
 namespace MP.Infrastructure.Helper
 {
     /// <summary>
-    /// Ip Helper. Work with jsonapi.
+    /// Ip Helper. 
+    /// Work with jsonapi.
     /// https://getjsonip.com/#docs
     /// </summary>
     [Serializable]

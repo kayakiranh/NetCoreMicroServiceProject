@@ -2,6 +2,9 @@
 
 namespace MP.Core.Domain.Enums
 {
+    /// <summary>
+    /// Entity status for base entity
+    /// </summary>
     [Serializable]
     public enum EntityStatus
     {
