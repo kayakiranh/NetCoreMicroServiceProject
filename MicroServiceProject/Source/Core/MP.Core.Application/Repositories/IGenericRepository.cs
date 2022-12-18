@@ -16,6 +16,6 @@ namespace MP.Core.Application.Repositories
         public Task<T> Insert(T model);
         public Task<List<T>> MultipleInsert(List<T> model);
         public Task<T> Update(T model);
-        public Task<int> Remove(int id);
+        public void Remove(int id);
     }
 }
