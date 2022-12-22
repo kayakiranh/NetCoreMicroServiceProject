@@ -3,9 +3,9 @@ using MP.Core.Domain.Enums;
 using System;
 using System.Net;
 using System.Net.Mail;
-using System.Configuration;
 using System.Text;
 using MP.Infrastructure.Helper;
+using Microsoft.Extensions.Configuration;
 
 namespace MP.Infrastructure.Mailer
 {
@@ -16,10 +16,12 @@ namespace MP.Infrastructure.Mailer
     public class MailerRepository : IMailerRepository
     {
         private readonly ILoggerRepository _loggerRepository;
+        private readonly IConfiguration _configuration;
 
-        public MailerRepository(ILoggerRepository loggerRepository)
+        public MailerRepository(ILoggerRepository loggerRepository, IConfiguration configuration)
         {
             _loggerRepository = loggerRepository;
+            _configuration = configuration;
         }
 
         public bool SendMail(string subject, string content, string email, string fullName)
@@ -36,17 +38,17 @@ namespace MP.Infrastructure.Mailer
 
             try
             {
-                MailAddress from = new(ConfigurationManager.AppSettings["fromAddress"], ConfigurationManager.AppSettings["fromName"]);
+                MailAddress from = new(_configuration.GetSection("EmailSettings:FromAddress").Value, _configuration.GetSection("EmailSettings:FromName").Value);
                 MailAddress to = new(email);
 
                 SmtpClient smtpClient = new()
                 {
-                    Host = ConfigurationManager.AppSettings["host"],
-                    Port = Convert.ToInt32(ConfigurationManager.AppSettings["port"]),
-                    EnableSsl = Convert.ToBoolean(ConfigurationManager.AppSettings["enableSsl"]),
+                    Host = _configuration.GetSection("EmailSettings:Host").Value,
+                    Port = Convert.ToInt32(_configuration.GetSection("EmailSettings:Port").Value),
+                    EnableSsl = Convert.ToBoolean(_configuration.GetSection("EmailSettings:EnableSsl").Value),
                     DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = Convert.ToBoolean(ConfigurationManager.AppSettings["useDefaultCredentials"]),
-                    Credentials = new NetworkCredential(from.Address, ConfigurationManager.AppSettings["password"])
+                    UseDefaultCredentials = Convert.ToBoolean(_configuration.GetSection("EmailSettings:UseDefaultCredentials").Value),
+                    Credentials = new NetworkCredential(from.Address, _configuration.GetSection("EmailSettings:Password").Value)
                 };
                 using (MailMessage mailMessage = new(from, to)
                 {

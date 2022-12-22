@@ -33,5 +33,8 @@ namespace MP.Core.Domain.Entities
         [Required]
         [Range(0, int.MaxValue)]
         public decimal MonthlyIncome { get; set; } = 0; //Monthly income, salary + other incomes
+
+        [Required]
+        public string Token { get; set; } = ""; //JWT token
     }
 }

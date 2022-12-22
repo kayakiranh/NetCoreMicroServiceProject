@@ -14,5 +14,6 @@ namespace MP.Core.Application.DataTransferObjects
         public string Phone { get; set; } = string.Empty; //Phone number with country code, +905001112233
         public string EmailAddress { get; set; } = string.Empty; //Email address, kayakiranh@gmail.com
         public decimal MonthlyIncome { get; set; } = 0; //Monthly income, salary + other incomes
+        public string Token { get; set; } = ""; //JWT token
     }
 }

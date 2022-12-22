@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MP.Core.Application.Repositories;
 using MP.Core.Domain.Entities;
 using MP.Core.Domain.Enums;
@@ -14,14 +15,12 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
     public class CreditCardRepository : GenericRepository<CreditCard>, ICreditCardRepository
     {
         private readonly MicroServiceDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
-        public CreditCardRepository(MicroServiceDbContext dbContext) : base(dbContext)
+        public CreditCardRepository(MicroServiceDbContext dbContext, IConfiguration configuration) : base(dbContext, configuration)
         {
+            _configuration = configuration;
             _dbContext = dbContext;
-            if (_dbContext.Database == null)
-            {
-                _dbContext = new MicroServiceDbContext();
-            }
         }
 
         public async Task<List<CreditCard>> ListByBank(BankNames bankName)

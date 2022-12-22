@@ -34,5 +34,6 @@ namespace MP.Core.Domain.Entities
         [Required]
         [Range(3000, 10000)]
         public decimal MaximumLimit { get; set; } //Maximum limit, 10000
+
     }
 }

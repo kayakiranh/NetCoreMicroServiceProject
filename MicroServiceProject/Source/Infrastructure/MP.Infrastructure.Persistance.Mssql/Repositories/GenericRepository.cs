@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MP.Core.Application.Repositories;
 using MP.Core.Domain.Entities;
 using System.Collections.Generic;
@@ -13,14 +14,12 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         private readonly MicroServiceDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
-        public GenericRepository(MicroServiceDbContext dbContext)
+        public GenericRepository(MicroServiceDbContext dbContext, IConfiguration configuration)
         {
+            _configuration = configuration;
             _dbContext = dbContext;
-            if (_dbContext.Database == null)
-            {
-                _dbContext = new MicroServiceDbContext();
-            }
         }
 
         public async Task<List<T>> GetAll()
@@ -33,7 +32,7 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
             return await _dbContext.Set<T>().AsNoTracking().CountAsync();
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(long id)
         {
             if (id < 1) return null;
 

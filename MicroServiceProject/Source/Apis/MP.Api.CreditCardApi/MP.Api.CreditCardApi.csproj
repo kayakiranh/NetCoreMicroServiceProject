@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\MP.Core.Application\MP.Core.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Logger\MP.Infrastructure.Logger.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Mailer\MP.Infrastructure.Mailer.csproj" />
   </ItemGroup>
 
 </Project>
