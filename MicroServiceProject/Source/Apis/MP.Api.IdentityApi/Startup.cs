@@ -11,6 +11,7 @@ using MP.Infrastructure.Logger;
 using MP.Infrastructure.Mailer;
 using MP.Infrastructure.Persistance.Mssql;
 using MP.Infrastructure.Persistance.Redis;
+using System;
 using System.IO.Compression;
 using System.Text;
 
@@ -68,7 +69,7 @@ namespace MP.Api.IdentityApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "Token almak için 'http://localhost:4479/auth/get-swagger-token' adresini kullanın",
+                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için '/api/token/swagger' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
@@ -78,7 +79,7 @@ namespace MP.Api.IdentityApi
                                     Id = "Bearer"
                             }
                         },
-                        new string[] {}
+                        Array.Empty<string>()
                     }
                 });
             });

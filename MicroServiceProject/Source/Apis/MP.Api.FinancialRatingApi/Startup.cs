@@ -69,7 +69,7 @@ namespace MP.Api.FinancialRatingApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "Token almak için 'http://localhost:4479/auth/get-swagger-token' adresini kullanın",
+                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için '/api/token/swagger' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {

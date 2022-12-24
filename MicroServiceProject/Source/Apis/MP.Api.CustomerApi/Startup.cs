@@ -7,6 +7,10 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MediatR;
 using System;
+using MP.Infrastructure.Logger;
+using MP.Infrastructure.Mailer;
+using MP.Infrastructure.Persistance.Redis;
+using MP.Infrastructure.Persistance.Mssql;
 
 namespace MP.Api.CustomerApi
 {
@@ -22,10 +26,10 @@ namespace MP.Api.CustomerApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //PersistanceLayerRegister.Register(services);
-            //ApplicationLayerRegister.Register(services);
-            //LoggingLayerRegister.Register(services);
-            //RedisLayerRegister.Register(services);
+            LoggerRegister.Register(services);
+            MailerRegister.Register(services);
+            PersistanceMssqlRegister.Register(services);
+            PersistanceRedisRegister.Register(services);
 
             services.AddSwaggerGen(c =>
             {
@@ -41,7 +45,7 @@ namespace MP.Api.CustomerApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için '/api/token' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
+                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için '/api/token/swagger' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {

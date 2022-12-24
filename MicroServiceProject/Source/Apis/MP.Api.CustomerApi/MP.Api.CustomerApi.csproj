@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\MP.Core.Application\MP.Core.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Logger\MP.Infrastructure.Logger.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Mailer\MP.Infrastructure.Mailer.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Mssql\MP.Infrastructure.Persistance.Mssql.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Redis\MP.Infrastructure.Persistance.Redis.csproj" />
   </ItemGroup>
 
 </Project>

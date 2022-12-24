@@ -34,7 +34,7 @@ namespace MP.Api.FinancialRatingApi.Controllers
         {
             if (model.IdentityNumber.StringSecurityValidation() == "" || model.MonthlyIncome < 1)
             {
-                _loggerRepository.Insert(LogTypes.Information, "ConnectAnyFinancialService BadRequest", null, model);
+                _loggerRepository.Insert(LogTypes.Error, "ConnectAnyFinancialService BadRequest", null, model);
                 return BadRequest();
             }
 
@@ -44,6 +44,8 @@ namespace MP.Api.FinancialRatingApi.Controllers
                 _loggerRepository.Insert(LogTypes.Information, "ConnectAnyFinancialService BadRequest", null, customer, model);
                 return BadRequest();
             }
+            
+            //Fake client call
             FinancialApiResponse fakeApiResponse = await FakeApiClient(model.IdentityNumber);
             if (fakeApiResponse == null)
             {

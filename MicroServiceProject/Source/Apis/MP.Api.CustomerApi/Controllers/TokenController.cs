@@ -1,12 +1,9 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MP.Core.Application.Features.Queries;
+using Microsoft.Extensions.Configuration;
+using MP.Core.Application.Features.Commands.CustomerCommands;
 using MP.Core.Application.Wrapper;
-using MP.Core.Domain.Entities;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace MP.Api.CustomerApi.Controllers
@@ -16,23 +13,27 @@ namespace MP.Api.CustomerApi.Controllers
     [ApiExplorerSettings(IgnoreApi = true)]
     public class TokenController : ControllerBase
     {
-        private readonly IMediator _mediatr;
+        private readonly IMediator _mediator;
+        private readonly IConfiguration _configuration;
 
-        public TokenController(IMediator mediatr)
+        public TokenController(IMediator mediator, IConfiguration configuration)
         {
-            _mediatr = mediatr;
+            _mediator = mediator;
+            _configuration = configuration;
         }
 
-        public async Task<string> Index()
+        [HttpPost("swagger")]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ApiResponse>> Login([FromBody] CustomerLoginCommand command)
         {
-            CustomerLoginQuery customerLoginQuery = new CustomerLoginQuery
-            {
-                Email = "kayakiranh@gmail.com",
-                Password = "1234567890"
-            };
-            ApiResponse apiResponse = await _mediatr.Send(customerLoginQuery);
-            Customer user = JsonConvert.DeserializeObject<Customer>(apiResponse.Result.ToString());
-            return new string(user.Token);
+            command.Email = _configuration.GetSection("JWT:SwaggerUserEmail").Value;
+            command.Password = _configuration.GetSection("JWT:SwaggerUserPassword").Value;
+            ApiResponse response = await _mediator.Send(command);
+
+            if (!response.Status) return BadRequest(response);
+
+            return Ok(response);
         }
     }
 }
