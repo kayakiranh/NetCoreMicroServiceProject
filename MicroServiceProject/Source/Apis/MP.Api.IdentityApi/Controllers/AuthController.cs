@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using MP.Core.Application.Repositories;
 using MP.Core.Application.ViewModels;
 using MP.Core.Domain.Entities;
 using MP.Core.Domain.Enums;
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MP.Api.IdentityApi.Controllers
@@ -33,9 +29,6 @@ namespace MP.Api.IdentityApi.Controllers
             Customer customer = await _customerRepository.Login(model.Email, model.Password);
             if (customer.Id == 0) return BadRequest();
 
-            string token = GenerateToken(model.Email);
-            _customerRepository.UpdateToken(customer.Id, token);
-
             return Ok();
         }
 
@@ -56,16 +49,17 @@ namespace MP.Api.IdentityApi.Controllers
             Customer customer = await _customerRepository.GetByToken(token);
             if (customer.Id == 0) return BadRequest();
 
-            string newToken = GenerateToken(customer.EmailAddress);
-            _customerRepository.UpdateToken(customer.Id, newToken);
+            Customer updateCustomer = await _customerRepository.Login(customer.EmailAddress, customer.Password);
+            if (updateCustomer.Id == 0) return BadRequest();
 
             return Ok();
         }
 
-        [HttpPost("get-swagger-token")]
+        [HttpPost("test-user")]
         public async Task<IActionResult> GetSwaggerToken()
         {
-            Customer customer = await _customerRepository.Login(_configuration["JWT:SwaggerUserEmail"], _configuration["JWT:SwaggerUserPassword"]);
+            Customer customer = new Customer();
+            customer = await _customerRepository.Login(_configuration["JWT:SwaggerUserEmail"], _configuration["JWT:SwaggerUserPassword"]);
             if (customer.Id == 0)
             {
                 Random rnd = new Random();
@@ -80,29 +74,10 @@ namespace MP.Api.IdentityApi.Controllers
                     Status = (int)EntityStatus.Active,
                     Token = ""
                 });
+                customer = await _customerRepository.Login(customer.EmailAddress, customer.Password);
+                if (customer.Id > 0) return Ok(customer);
             }
-
-            string token = GenerateToken(_configuration["JWT:SwaggerUserEmail"]);
-            _customerRepository.UpdateToken(customer.Id, token);
-
-            return Ok();
-        }
-
-        private string GenerateToken(string email)
-        {
-            JwtSecurityTokenHandler tokenHandler = new();
-            byte[] tokenKey = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]);
-            SecurityTokenDescriptor tokenDescriptor = new()
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.Name, email)
-                }),
-                Expires = DateTime.UtcNow.AddHours(2),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
-            };
-            SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(securityToken);
+            return BadRequest();       
         }
     }
 }

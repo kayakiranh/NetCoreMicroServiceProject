@@ -85,7 +85,7 @@ namespace MP.Api.CustomerApi.Controllers
         [HttpGet("by-token")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ApiResponse>> CustomerByTokenQuery(CustomerGetByTokenQuery query)
+        public async Task<ActionResult<ApiResponse>> ByToken(CustomerGetByTokenQuery query)
         {
             ApiResponse response = await _mediator.Send(query);
 
@@ -98,7 +98,7 @@ namespace MP.Api.CustomerApi.Controllers
         [HttpGet("by-identity")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ApiResponse>> List(CustomerGetByIdentityNumberQuery query)
+        public async Task<ActionResult<ApiResponse>> v(CustomerGetByIdentityNumberQuery query)
         {
             ApiResponse response = await _mediator.Send(query);
 
