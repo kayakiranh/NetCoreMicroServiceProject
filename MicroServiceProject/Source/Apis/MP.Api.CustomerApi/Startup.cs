@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using MediatR;
+using System;
 
 namespace MP.Api.CustomerApi
 {
@@ -49,7 +51,7 @@ namespace MP.Api.CustomerApi
                                     Id = "Bearer"
                             }
                         },
-                        new string[] {}
+                        Array.Empty<string>()
                     }
                 });
             });
@@ -73,6 +75,7 @@ namespace MP.Api.CustomerApi
                                             .AllowAnyMethod();
                     });
             });
+            services.AddMediatR(typeof(Program));
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

@@ -1,15 +1,13 @@
 ﻿using MP.Core.Domain.Entities;
 using System;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using MP.Core.Application.Repositories;
 using System.Threading;
 using MP.Core.Domain.Enums;
 using MP.Core.Application.Wrapper;
 
-
-namespace MP.Core.Application.Features.Queries
+namespace MP.Core.Application.Features.Queries.CustomerQueries
 {
     public class CustomerGetByIdentityNumberQuery : IRequest<ApiResponse>
     {
@@ -18,13 +16,11 @@ namespace MP.Core.Application.Features.Queries
         public class CustomerGetByIdentityNumberQueryHandler : IRequestHandler<CustomerGetByIdentityNumberQuery, ApiResponse>
         {
             private readonly ICustomerRepository _customerRepository;
-            private readonly IMapper _mapper;
             private readonly ILoggerRepository _logger;
 
-            public CustomerGetByIdentityNumberQueryHandler(ICustomerRepository customerRepository, IMapper mapper, ILoggerRepository logger)
+            public CustomerGetByIdentityNumberQueryHandler(ICustomerRepository customerRepository, ILoggerRepository logger)
             {
                 _customerRepository = customerRepository;
-                _mapper = mapper;
                 _logger = logger;
             }
 
@@ -36,24 +32,18 @@ namespace MP.Core.Application.Features.Queries
                     Customer getByIdentityNumberResponse = await _customerRepository.GetByIdentityNumber(request.IdentityNumber);
                     if (getByIdentityNumberResponse == null)
                     {
-                        _logger.Insert(LogTypes.Error, "CustomerGetByIdentityNumberQuery Error", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerGetByIdentityNumberQuery BadRequest");
+                        _logger.Insert(LogTypes.Error, "CustomerGetByIdentityNumberQuery DataNotFound", null, request);
+                        response = ApiResponse.ErrorResponse("CustomerGetByIdentityNumberQuery DataNotFound");
                     }
-
-                    if (getByIdentityNumberResponse.Id > 0)
+                    else
                     {
                         _logger.Insert(LogTypes.Information, "CustomerGetByIdentityNumberQuery Success");
                         response = ApiResponse.SuccessResponse(getByIdentityNumberResponse);
                     }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Error, "CustomerGetByIdentityNumberQuery Error", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerGetByIdentityNumberQuery Error");
-                    }
                 }
                 catch (OperationCanceledException ex)
                 {
-                    _logger.Insert(LogTypes.Critical, "CustomerGetByIdentityNumberQuery Cancelled", ex, request, cancellationToken);
+                    _logger.Insert(LogTypes.Information, "CustomerGetByIdentityNumberQuery Cancelled", ex, request, cancellationToken);
                     response = ApiResponse.ErrorResponse(ex);
                 }
                 catch (Exception ex)

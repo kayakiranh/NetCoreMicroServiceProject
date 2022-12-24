@@ -1,0 +1,65 @@
+﻿using MP.Core.Domain.Entities;
+using System;
+using System.Threading.Tasks;
+using AutoMapper;
+using MediatR;
+using MP.Core.Application.Repositories;
+using System.Threading;
+using MP.Core.Application.DataTransferObjects;
+using MP.Core.Domain.Enums;
+using MP.Core.Application.Wrapper;
+
+namespace MP.Core.Application.Features.Commands.CreditCardCommands
+{
+    public class CreditCardInsertCommand : IRequest<ApiResponse>
+    {
+        public CreditCardDto CreditCardDto { get; set; }
+
+        public class CreditCardInsertCommandHandler : IRequestHandler<CreditCardInsertCommand, ApiResponse>
+        {
+            private readonly ICreditCardRepository _creditCardRepository;
+            private readonly IMapper _mapper;
+            private readonly ILoggerRepository _logger;
+
+            public CreditCardInsertCommandHandler(ICreditCardRepository creditCardRepository, IMapper mapper, ILoggerRepository logger)
+            {
+                _creditCardRepository = creditCardRepository;
+                _mapper = mapper;
+                _logger = logger;
+            }
+
+            public async Task<ApiResponse> Handle(CreditCardInsertCommand request, CancellationToken cancellationToken)
+            {
+                ApiResponse response = new ApiResponse();
+                try
+                {
+                    CreditCard CreditCard = _mapper.Map<CreditCard>(request.CreditCardDto);
+                    CreditCard insertResponse = await _creditCardRepository.Insert(CreditCard);
+
+                    if (insertResponse.Id < 1)
+                    {                        
+                        _logger.Insert(LogTypes.Error, "CreditCardInsertCommand Error", null, request);
+                        response = ApiResponse.ErrorResponse("CreditCardInsertCommand Error");
+                    }
+                    else
+                    {
+                        _logger.Insert(LogTypes.Information, "CreditCardInsertCommand Success");
+                        response = ApiResponse.SuccessResponse(insertResponse);
+                    }
+                }
+                catch (OperationCanceledException ex)
+                {
+                    _logger.Insert(LogTypes.Information, "CreditCardInsertCommand Cancelled", ex, request, cancellationToken);
+                    response = ApiResponse.ErrorResponse(ex);
+                }
+                catch (Exception ex)
+                {
+                    _logger.Insert(LogTypes.Critical, "CreditCardInsertCommand Catch", ex, request);
+                    response = ApiResponse.ErrorResponse(ex);
+                }
+
+                return response;
+            }
+        }
+    }
+}

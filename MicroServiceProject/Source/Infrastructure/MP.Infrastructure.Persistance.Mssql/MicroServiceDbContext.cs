@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MP.Core.Domain.Entities;
-using MP.Infrastructure.Helper;
 
 namespace MP.Infrastructure.Persistance.Mssql
 {
@@ -17,8 +16,10 @@ namespace MP.Infrastructure.Persistance.Mssql
         {
             _configuration = configuration;
         }
+
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CreditCard> CreditCards { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(_configuration.GetSection("ConnectionStrings:MsSqlConnectionString").Value);

@@ -2,6 +2,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+
 namespace MP.Infrastructure.Helper
 {
     /// <summary>

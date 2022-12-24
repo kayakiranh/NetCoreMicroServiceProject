@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MP.Core.Domain.Enums
 {
+    /// <summary>
+    /// Email templates
+    /// </summary>
+    [Serializable]
     public enum EmailTemplates
     {
         FinancialApiError

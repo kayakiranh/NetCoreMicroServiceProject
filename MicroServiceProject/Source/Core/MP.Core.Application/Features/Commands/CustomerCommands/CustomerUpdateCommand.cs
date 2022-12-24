@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
-using MP.Core.Application.DataTransferObjects;
+﻿using MediatR;
 using MP.Core.Application.Repositories;
 using MP.Core.Application.Wrapper;
 using MP.Core.Domain.Entities;
@@ -9,22 +7,20 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MP.Core.Application.Features.Commands
+namespace MP.Core.Application.Features.Commands.CustomerCommands
 {
     public class CustomerUpdateCommand : IRequest<ApiResponse>
     {
-        public CustomerDto CustomerDto { get; set; }
+        public int Id { get; set; }
 
         public class CustomerUpdateCommandHandler : IRequestHandler<CustomerUpdateCommand, ApiResponse>
         {
             private readonly ICustomerRepository _customerRepository;
-            private readonly IMapper _mapper;
             private readonly ILoggerRepository _logger;
 
-            public CustomerUpdateCommandHandler(ICustomerRepository customerRepository, IMapper mapper, ILoggerRepository logger)
+            public CustomerUpdateCommandHandler(ICustomerRepository customerRepository, ILoggerRepository logger)
             {
                 _customerRepository = customerRepository;
-                _mapper = mapper;
                 _logger = logger;
             }
 
@@ -33,19 +29,19 @@ namespace MP.Core.Application.Features.Commands
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    Customer customer = await _customerRepository.GetById(request.CustomerDto.Id);
+                    Customer customer = await _customerRepository.GetById(request.Id);
                     if (customer != null)
                     {
-                        _logger.Insert(LogTypes.Information, "CustomerUpdateCommand DataNotFound", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerUpdateCommand DataNotFound");
+                        _logger.Insert(LogTypes.Error, "CustomerUpdateCommand Error", null, request);
+                        response = ApiResponse.ErrorResponse("CustomerUpdateCommand Error");
                     }
 
-                    Customer UpdateResponse = await _customerRepository.Update(customer);
+                    Customer updateResponse = await _customerRepository.Update(customer);
 
-                    if (UpdateResponse.Id > 0)
+                    if (updateResponse.Id > 0)
                     {
                         _logger.Insert(LogTypes.Information, "CustomerUpdateCommand Success");
-                        response = ApiResponse.SuccessResponse(UpdateResponse);
+                        response = ApiResponse.SuccessResponse(updateResponse);
                     }
                     else
                     {
@@ -55,7 +51,7 @@ namespace MP.Core.Application.Features.Commands
                 }
                 catch (OperationCanceledException ex)
                 {
-                    _logger.Insert(LogTypes.Critical, "CustomerUpdateCommand Cancelled", ex, request, cancellationToken);
+                    _logger.Insert(LogTypes.Information, "CustomerUpdateCommand Cancelled", ex, request, cancellationToken);
                     response = ApiResponse.ErrorResponse(ex);
                 }
                 catch (Exception ex)

@@ -11,6 +11,5 @@ namespace MP.Core.Application.Repositories
         public Task<Customer> Login(string email, string password);
         public Task<Customer> GetByIdentityNumber(string identityNumber);
         public Task<Customer> GetByToken(string token);
-        public void UpdateToken(long id, string token);
     }
 }

@@ -10,6 +10,7 @@ using MP.Core.Domain.Enums;
 
 namespace MP.Api.FinancialRatingApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FinancialRatingController : ControllerBase
@@ -27,7 +28,7 @@ namespace MP.Api.FinancialRatingApi.Controllers
             _configuration = configuration;
         }
 
-        [Authorize]
+        
         [HttpPost("calculate")]
         public async Task<IActionResult> Calculate([FromBody] FinancialRatingViewModel model)
         {

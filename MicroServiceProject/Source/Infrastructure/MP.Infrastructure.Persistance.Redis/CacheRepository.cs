@@ -6,6 +6,9 @@ using System;
 
 namespace MP.Infrastructure.Persistance.Redis
 {
+    /// <summary>
+    /// Cache repository
+    /// </summary>
     public class CacheRepository : ICacheRepository
     {
         private readonly IDatabase _database;

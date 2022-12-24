@@ -15,11 +15,9 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
     public class CreditCardRepository : GenericRepository<CreditCard>, ICreditCardRepository
     {
         private readonly MicroServiceDbContext _dbContext;
-        private readonly IConfiguration _configuration;
 
         public CreditCardRepository(MicroServiceDbContext dbContext, IConfiguration configuration) : base(dbContext, configuration)
         {
-            _configuration = configuration;
             _dbContext = dbContext;
         }
 

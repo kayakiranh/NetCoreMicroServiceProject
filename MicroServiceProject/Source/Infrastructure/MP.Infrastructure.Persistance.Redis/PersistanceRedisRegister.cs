@@ -3,12 +3,11 @@ using MP.Core.Application.Repositories;
 
 namespace MP.Infrastructure.Persistance.Redis
 {
+    /// <summary>
+    /// Dependency injection settings
+    /// </summary>
     public static class PersistanceRedisRegister
     {
-        /// <summary>
-        /// DI
-        /// </summary>
-        /// <param name="services"></param>
         public static void Register(this IServiceCollection services)
         {
             services.AddTransient<ICacheRepository, CacheRepository>();

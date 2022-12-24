@@ -9,7 +9,7 @@ using MP.Core.Application.DataTransferObjects;
 using MP.Core.Domain.Enums;
 using MP.Core.Application.Wrapper;
 
-namespace MP.Core.Application.Features.Commands
+namespace MP.Core.Application.Features.Commands.CustomerCommands
 {
     public class CustomerInsertCommand : IRequest<ApiResponse>
     {
@@ -36,20 +36,20 @@ namespace MP.Core.Application.Features.Commands
                     Customer customer = _mapper.Map<Customer>(request.CustomerDto);
                     Customer insertResponse = await _customerRepository.Insert(customer);
 
-                    if (insertResponse.Id > 0)
+                    if (insertResponse.Id < 1)
+                    {                        
+                        _logger.Insert(LogTypes.Error, "CustomerInsertCommand Error", null, request);
+                        response = ApiResponse.ErrorResponse("CustomerInsertCommand Error");
+                    }
+                    else
                     {
                         _logger.Insert(LogTypes.Information, "CustomerInsertCommand Success");
                         response = ApiResponse.SuccessResponse(insertResponse);
                     }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Error, "CustomerInsertCommand Error", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerInsertCommand Error");
-                    }
                 }
                 catch (OperationCanceledException ex)
                 {
-                    _logger.Insert(LogTypes.Critical, "CustomerInsertCommand Cancelled", ex, request, cancellationToken);
+                    _logger.Insert(LogTypes.Information, "CustomerInsertCommand Cancelled", ex, request, cancellationToken);
                     response = ApiResponse.ErrorResponse(ex);
                 }
                 catch (Exception ex)

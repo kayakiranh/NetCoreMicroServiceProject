@@ -17,6 +17,11 @@ namespace MP.Core.Application.Repositories
         /// <param name="fullName">To name : "Hüseyin Kayakıran"</param>
         bool SendMail(string subject, string content, string email, string fullName);
 
+        /// <summary>
+        /// System mails
+        /// </summary>
+        /// <param name="emailTemplate">EmailTemplates</param>
+        /// <param name="model">Exception</param>
         void SendToAdmin(EmailTemplates emailTemplate, object model);
     }
 }

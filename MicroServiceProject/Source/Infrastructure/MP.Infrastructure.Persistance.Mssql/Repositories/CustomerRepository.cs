@@ -1,9 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using MP.Core.Application.Repositories;
 using MP.Core.Domain.Entities;
 using MP.Core.Domain.Enums;
 using MP.Infrastructure.Helper;
+using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MP.Infrastructure.Persistance.Mssql.Repositories
@@ -14,10 +19,12 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
     public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
     {
         private readonly MicroServiceDbContext _dbContext;
+        private readonly IConfiguration _configuration;
 
         public CustomerRepository(MicroServiceDbContext dbContext, IConfiguration configuration) : base(dbContext, configuration)
         {
             _dbContext = dbContext;
+            _configuration = configuration;
         }
 
         public async Task<Customer> GetByIdentityNumber(string identityNumber)
@@ -39,21 +46,27 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
             if (email.MailValidation() == "" || password.StringSecurityValidation() == "") return new Customer();
             password = password.Encrypt();
 
-            return await _dbContext.Customers.SingleOrDefaultAsync(x => x.EmailAddress == email && x.Password == password && x.Status == (int)EntityStatus.Active);
-        }
+            Customer customer = await _dbContext.Customers.SingleOrDefaultAsync(x => x.EmailAddress == email && x.Password == password && x.Status == (int)EntityStatus.Active);
+            if (customer.Id == 0) return new Customer();
 
-        public async void UpdateToken(long id, string token)
-        {
-            if(id > 0 && token.StringSecurityValidation() != "")
+            JwtSecurityTokenHandler tokenHandler = new();
+            byte[] tokenKey = Encoding.UTF8.GetBytes(_configuration.GetSection("JWT:Key").Value);
+            SecurityTokenDescriptor tokenDescriptor = new()
             {
-                Customer customer = await GetById(id);
-                if (customer.Id > 0)
+                Subject = new ClaimsIdentity(new Claim[]
                 {
-                    customer.Token = token;
-                    _dbContext.Customers.Update(customer);
-                    _dbContext.SaveChanges();
-                }
-            }
+                        new Claim(ClaimTypes.Name, email)
+                }),
+                Expires = DateTime.UtcNow.AddHours(2),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+            };
+            SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
+
+            customer.Token = tokenHandler.WriteToken(securityToken);
+            _dbContext.Update(customer);
+
+            return customer;
+
         }
     }
 }
