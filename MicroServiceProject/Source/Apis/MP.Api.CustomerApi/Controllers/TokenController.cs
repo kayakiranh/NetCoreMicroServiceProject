@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MP.Core.Application.Features.Queries;
 using MP.Core.Application.Wrapper;
+using MP.Core.Domain.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace MP.Api.CustomerApi.Controllers
             };
             ApiResponse apiResponse = await _mediatr.Send(customerLoginQuery);
             Customer user = JsonConvert.DeserializeObject<Customer>(apiResponse.Result.ToString());
-            return new string(user.AccessToken);
+            return new string(user.Token);
         }
     }
 }

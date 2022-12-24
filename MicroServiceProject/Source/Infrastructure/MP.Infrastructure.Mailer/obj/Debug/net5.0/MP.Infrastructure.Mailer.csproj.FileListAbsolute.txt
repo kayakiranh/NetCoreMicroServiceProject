@@ -1,4 +1,3 @@
-C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\bin\Debug\net5.0\MP.Infrastructure.Mailer.dll.config
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\bin\Debug\net5.0\MP.Infrastructure.Mailer.deps.json
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\bin\Debug\net5.0\MP.Infrastructure.Mailer.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\bin\Debug\net5.0\ref\MP.Infrastructure.Mailer.dll

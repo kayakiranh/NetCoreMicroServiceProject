@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "l3NrzypcAkc+1nH0HZE+9mD+03T1mi1bG0FIKazF/Rg=",
+  "Source": "MP.Api.IdentityApi",
+  "BasePath": "_content/MP.Api.IdentityApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

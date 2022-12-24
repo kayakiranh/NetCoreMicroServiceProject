@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Text;
 using MP.Infrastructure.Helper;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace MP.Infrastructure.Mailer
 {
@@ -65,6 +66,19 @@ namespace MP.Infrastructure.Mailer
                 _loggerRepository.Insert(LogTypes.Critical, "MailerRepository Error", ex, subject, subject, content, email, fullName);
                 return false;
             }
+        }
+
+        public void SendToAdmin(EmailTemplates emailTemplate, object model)
+        {
+            switch (emailTemplate)
+            {
+                case EmailTemplates.FinancialApiError:
+                    SendMail("Financial Api Error", JsonConvert.SerializeObject(model), _configuration.GetSection("EmailSettings:AdminMailAddress").Value, _configuration.GetSection("EmailSettings:AdminFullName").Value);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private static string GenerateMailBody(string content)

@@ -10,3 +10,10 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\obj\Debug\net5.0\MP.Infrastructure.Persistance.Redis.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\obj\Debug\net5.0\ref\MP.Infrastructure.Persistance.Redis.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\obj\Debug\net5.0\MP.Infrastructure.Persistance.Redis.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\bin\Debug\net5.0\MP.Core.Application.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\bin\Debug\net5.0\MP.Core.Domain.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\bin\Debug\net5.0\MP.Infrastructure.Helper.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\bin\Debug\net5.0\MP.Core.Application.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\bin\Debug\net5.0\MP.Core.Domain.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\bin\Debug\net5.0\MP.Infrastructure.Helper.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Persistance.Redis\obj\Debug\net5.0\MP.Infrastructure.Persistance.Redis.csproj.CopyComplete

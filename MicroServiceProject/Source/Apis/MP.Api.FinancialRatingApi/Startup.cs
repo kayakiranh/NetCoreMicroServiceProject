@@ -7,6 +7,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MP.Infrastructure.Logger;
+using MP.Infrastructure.Mailer;
+using MP.Infrastructure.Persistance.Mssql;
+using MP.Infrastructure.Persistance.Redis;
+using System;
 using System.IO.Compression;
 using System.Text;
 
@@ -44,6 +49,11 @@ namespace MP.Api.FinancialRatingApi
                 };
             });
 
+            LoggerRegister.Register(services);
+            MailerRegister.Register(services);
+            PersistanceMssqlRegister.Register(services);
+            PersistanceRedisRegister.Register(services);
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -66,12 +76,11 @@ namespace MP.Api.FinancialRatingApi
                         new OpenApiSecurityScheme {
                             Reference = new OpenApiReference {
                                 Type = ReferenceType.SecurityScheme,
-                                    Id = "Bearer"
+                                Id = "Bearer"
                             }
                         },
-                        new string[] {}
-                    }
-                });
+                        Array.Empty<string>()
+                }});
             });
 
             services.AddRouting(options => options.LowercaseUrls = true);

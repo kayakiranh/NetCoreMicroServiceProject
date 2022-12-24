@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "oC4ELtuAH5ZxGUmoRxpMj5AF0jfmfVcBCy5umosg7J4=",
+  "Source": "MP.UserInterface.CoreUI",
+  "BasePath": "_content/MP.UserInterface.CoreUI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

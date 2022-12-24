@@ -1,4 +1,6 @@
-﻿namespace MP.Core.Application.Repositories
+﻿using MP.Core.Domain.Enums;
+
+namespace MP.Core.Application.Repositories
 {
     /// <summary>
     /// Mailer repository
@@ -14,5 +16,7 @@
         /// <param name="email">To email address : "kayakiranh@gmail.com"</param>
         /// <param name="fullName">To name : "Hüseyin Kayakıran"</param>
         bool SendMail(string subject, string content, string email, string fullName);
+
+        void SendToAdmin(EmailTemplates emailTemplate, object model);
     }
 }

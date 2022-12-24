@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "pcHP91VOQ9+6uj0L4IpodCikQ68BhtUbmXkhsECg/ow=",
+  "Source": "MP.Api.FinancialRatingApi",
+  "BasePath": "_content/MP.Api.FinancialRatingApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

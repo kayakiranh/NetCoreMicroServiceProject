@@ -1,0 +1,11 @@
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\bin\Debug\net6.0\MP.Infrastructure.Helper.deps.json
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\bin\Debug\net6.0\MP.Infrastructure.Helper.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\bin\Debug\net6.0\ref\MP.Infrastructure.Helper.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\bin\Debug\net6.0\MP.Infrastructure.Helper.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\MP.Infrastructure.Helper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\MP.Infrastructure.Helper.AssemblyInfoInputs.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\MP.Infrastructure.Helper.AssemblyInfo.cs
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\MP.Infrastructure.Helper.csproj.CoreCompileInputs.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\MP.Infrastructure.Helper.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\ref\MP.Infrastructure.Helper.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Helper\obj\Debug\net6.0\MP.Infrastructure.Helper.pdb
