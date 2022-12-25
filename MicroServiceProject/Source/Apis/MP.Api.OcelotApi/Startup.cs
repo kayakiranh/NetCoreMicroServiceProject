@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MP.Infrastructure.Logger;
+using MP.Infrastructure.Mailer;
+using MP.Infrastructure.Persistance.Mssql;
+using MP.Infrastructure.Persistance.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +30,10 @@ namespace MP.Api.OcelotApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            LoggerRegister.Register(services);
+            MailerRegister.Register(services);
+            PersistanceRedisRegister.Register(services);
+            PersistanceMssqlRegister.Register(services);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

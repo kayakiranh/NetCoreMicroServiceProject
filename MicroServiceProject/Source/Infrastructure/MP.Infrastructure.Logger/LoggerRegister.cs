@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using MP.Core.Application.Repositories;
 
 namespace MP.Infrastructure.Logger
@@ -11,6 +12,7 @@ namespace MP.Infrastructure.Logger
         public static void Register(this IServiceCollection services)
         {
             services.AddTransient<ILoggerRepository, LoggerRepository>();
+            services.AddSingleton<ILogger>(provider =>  provider.GetRequiredService<ILogger>());
         }
     }
 }

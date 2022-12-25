@@ -11,17 +11,18 @@ namespace MP.Infrastructure.Persistance.Redis
     /// </summary>
     public class CacheRepository : ICacheRepository
     {
-        private readonly IDatabase _database;
         private readonly IConfiguration _configuration;
+        private readonly IConnectionMultiplexer _connectionMultiplexer;
 
-        public CacheRepository(int databaseNumber, IConfiguration configuration)
+        public CacheRepository(IConfiguration configuration)
         {
             _configuration = configuration;
-            _database = ConnectionMultiplexer.Connect(_configuration.GetSection("ConnectionStrings:RedisConnectionString").Value).GetDatabase(databaseNumber);
+            _connectionMultiplexer = ConnectionMultiplexer.Connect(_configuration.GetSection("ConnectionStrings:RedisConnectionString").Value);
         }
 
-        public T GetData<T>(string key)
+        public T GetData<T>(int dbNumber, string key)
         {
+            IDatabase _database = _connectionMultiplexer.GetDatabase(dbNumber);
             var value = _database.StringGet(key);
             if (!string.IsNullOrEmpty(value))
             {
@@ -29,12 +30,14 @@ namespace MP.Infrastructure.Persistance.Redis
             }
             return default;
         }
-        public void SetData<T>(string key, T value)
+        public void SetData<T>(int dbNumber, string key, T value)
         {
+            IDatabase _database = _connectionMultiplexer.GetDatabase(dbNumber);
             _database.StringSet(key, JsonConvert.SerializeObject(value), TimeSpan.FromHours(24));
         }
-        public void RemoveData(string key)
+        public void RemoveData(int dbNumber, string key)
         {
+            IDatabase _database = _connectionMultiplexer.GetDatabase(dbNumber);
             if (_database.KeyExists(key)) _database.KeyDelete(key);
         }
     }

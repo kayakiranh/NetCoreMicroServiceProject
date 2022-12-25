@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MP.Core.Domain.Entities
 {
@@ -31,8 +32,8 @@ namespace MP.Core.Domain.Entities
         public string Password { get; set; } = string.Empty; //Password, sha + salt
 
         [Required]
-        [Range(0, int.MaxValue)]
-        public decimal MonthlyIncome { get; set; } = 0; //Monthly income, salary + other incomes
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal MonthlyIncome { get; set; } //Monthly income, salary + other incomes
 
         [Required]
         public string Token { get; set; } = ""; //JWT token

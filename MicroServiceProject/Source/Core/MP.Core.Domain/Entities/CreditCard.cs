@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MP.Core.Domain.Entities
 {
@@ -28,11 +29,11 @@ namespace MP.Core.Domain.Entities
         public double MinimumFinancialScore { get; set; } //Minimum financial score, 1 to 5
 
         [Required]
-        [Range(500,2000)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal MinimumLimit { get; set; } //Minimum limit, 500
 
         [Required]
-        [Range(3000, 10000)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal MaximumLimit { get; set; } //Maximum limit, 10000
 
     }

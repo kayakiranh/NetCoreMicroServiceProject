@@ -5,8 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Ocelot" Version="18.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Logger\MP.Infrastructure.Logger.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Mailer\MP.Infrastructure.Mailer.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Mssql\MP.Infrastructure.Persistance.Mssql.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Redis\MP.Infrastructure.Persistance.Redis.csproj" />
   </ItemGroup>
 
 </Project>
