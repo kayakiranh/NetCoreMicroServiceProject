@@ -1,0 +1,50 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/creditcard",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/creditcard",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection" //Redirect to low traffic server
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "localhost" ], //Rate limit doesnt effect "localhost"
+        "EnableRateLimiting": true,
+        "Period": "1h", //1 Hour
+        "PeriodTimespan": 1, //1 second waiting for next request
+        "Limit": 100 //100 Request >> 60 request per 1 hour.
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ] //Allowed methods
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/customer",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5000",
+    "RateLimitOptions": {
+      "DisableRateLimitHeaders": true,
+      "QuotaExceededMessage": "You sent 100 request in 1 hour. Need to wait or upgrade membership.",
+      "HttpStatusCode": 999,
+      "ClientIdHeader": "Microservice Project"
+    }
+  }
+}

@@ -1,20 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using MP.Infrastructure.Logger;
 using MP.Infrastructure.Mailer;
 using MP.Infrastructure.Persistance.Mssql;
 using MP.Infrastructure.Persistance.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Ocelot.Middleware;
+using System.IO.Compression;
 
 namespace MP.Api.OcelotApi
 {
@@ -27,7 +21,6 @@ namespace MP.Api.OcelotApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             LoggerRegister.Register(services);
@@ -35,27 +28,38 @@ namespace MP.Api.OcelotApi
             PersistanceRedisRegister.Register(services);
             PersistanceMssqlRegister.Register(services);
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddRouting(options => options.LowercaseUrls = true);
+
+            services.AddCors(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MP.Api.OcelotApi", Version = "v1" });
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:4479").AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MP.Api.OcelotApi v1"));
-            }
-
+            app.UseOcelot().Wait();
             app.UseHttpsRedirection();
-
+            app.UseResponseCompression();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors();
+            app.UseHsts();
 
             app.UseEndpoints(endpoints =>
             {

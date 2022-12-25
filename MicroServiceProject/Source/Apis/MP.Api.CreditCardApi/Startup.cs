@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MP.Infrastructure.Logger;
@@ -54,6 +55,19 @@ namespace MP.Api.CreditCardApi
             PersistanceMssqlRegister.Register(services);
             PersistanceRedisRegister.Register(services);
 
+            //services.Configure<BrotliCompressionProviderOptions>(options =>
+            //{
+            //    options.Level = CompressionLevel.Optimal;
+            //});
+
+            services.Configure(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.Secure = CookieSecurePolicy.Always;
+                options.HttpOnly = HttpOnlyPolicy.Always;
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -95,10 +109,6 @@ namespace MP.Api.CreditCardApi
                     });
             });
 
-            services.Configure<BrotliCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
-            });
 
             services.AddResponseCompression(options =>
             {
