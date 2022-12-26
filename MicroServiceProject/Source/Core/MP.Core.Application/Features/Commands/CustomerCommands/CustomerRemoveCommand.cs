@@ -17,11 +17,13 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
         {
             private readonly ICustomerRepository _customerRepository;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CustomerRemoveCommandHandler(ICustomerRepository CustomerRepository, ILoggerRepository logger)
+            public CustomerRemoveCommandHandler(ICustomerRepository CustomerRepository, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _customerRepository = CustomerRepository;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CustomerRemoveCommand request, CancellationToken cancellationToken)
@@ -43,6 +45,7 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
                         }
                         else
                         {
+                            _cacheRepository.RemoveData(check, check.EmailAddress);
                             _logger.Insert(LogTypes.Information, "CustomerRemoveCommand Success");
                             response = ApiResponse.SuccessResponse(getByIdResponse);
                         }

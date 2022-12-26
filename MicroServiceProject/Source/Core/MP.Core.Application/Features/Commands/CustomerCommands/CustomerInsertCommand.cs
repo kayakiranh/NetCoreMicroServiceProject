@@ -20,12 +20,14 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
             private readonly ICustomerRepository _customerRepository;
             private readonly IMapper _mapper;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CustomerInsertCommandHandler(ICustomerRepository customerRepository, IMapper mapper, ILoggerRepository logger)
+            public CustomerInsertCommandHandler(ICustomerRepository customerRepository, IMapper mapper, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _customerRepository = customerRepository;
                 _mapper = mapper;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CustomerInsertCommand request, CancellationToken cancellationToken)
@@ -43,6 +45,7 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
                     }
                     else
                     {
+                        _cacheRepository.SetData(insertResponse.EmailAddress, insertResponse);
                         _logger.Insert(LogTypes.Information, "CustomerInsertCommand Success");
                         response = ApiResponse.SuccessResponse(insertResponse);
                     }

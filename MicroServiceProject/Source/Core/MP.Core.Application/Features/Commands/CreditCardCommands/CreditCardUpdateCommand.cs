@@ -20,12 +20,14 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
             private readonly ICreditCardRepository _creditCardRepository;
             private readonly IMapper _mapper;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CreditCardUpdateCommandHandler(ICreditCardRepository creditCardRepository, IMapper mapper, ILoggerRepository logger)
+            public CreditCardUpdateCommandHandler(ICreditCardRepository creditCardRepository, IMapper mapper, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _creditCardRepository = creditCardRepository;
                 _mapper = mapper;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CreditCardUpdateCommand request, CancellationToken cancellationToken)
@@ -35,6 +37,7 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
                 {
                     CreditCard CreditCard = _mapper.Map<CreditCard>(request.CreditCardDto);
                     CreditCard UpdateResponse = await _creditCardRepository.Update(CreditCard);
+                   
 
                     if (UpdateResponse.Id < 1)
                     {
@@ -42,7 +45,8 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
                         response = ApiResponse.ErrorResponse("CreditCardUpdateCommand Error");
                     }
                     else
-                    {                        
+                    {
+                        _cacheRepository.SetData(UpdateResponse.Name, UpdateResponse);
                         _logger.Insert(LogTypes.Information, "CreditCardUpdateCommand Success");
                         response = ApiResponse.SuccessResponse(UpdateResponse);
                     }

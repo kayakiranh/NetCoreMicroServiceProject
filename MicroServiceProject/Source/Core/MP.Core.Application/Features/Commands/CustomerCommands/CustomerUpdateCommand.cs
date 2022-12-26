@@ -17,11 +17,13 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
         {
             private readonly ICustomerRepository _customerRepository;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CustomerUpdateCommandHandler(ICustomerRepository customerRepository, ILoggerRepository logger)
+            public CustomerUpdateCommandHandler(ICustomerRepository customerRepository, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _customerRepository = customerRepository;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CustomerUpdateCommand request, CancellationToken cancellationToken)
@@ -40,6 +42,7 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
 
                     if (updateResponse.Id > 0)
                     {
+                        _cacheRepository.SetData(updateResponse.EmailAddress, updateResponse);
                         _logger.Insert(LogTypes.Information, "CustomerUpdateCommand Success");
                         response = ApiResponse.SuccessResponse(updateResponse);
                     }

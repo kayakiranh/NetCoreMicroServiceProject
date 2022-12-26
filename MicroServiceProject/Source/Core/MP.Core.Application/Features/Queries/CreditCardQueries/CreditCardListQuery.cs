@@ -17,11 +17,13 @@ namespace MP.Core.Application.Features.Queries.CreditCardQueries
         {
             private readonly ICreditCardRepository _creditCardRepository;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CreditCardListQueryHandler(ICreditCardRepository creditCardRepository, ILoggerRepository logger)
+            public CreditCardListQueryHandler(ICreditCardRepository creditCardRepository, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _creditCardRepository = creditCardRepository;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CreditCardListQuery request, CancellationToken cancellationToken)

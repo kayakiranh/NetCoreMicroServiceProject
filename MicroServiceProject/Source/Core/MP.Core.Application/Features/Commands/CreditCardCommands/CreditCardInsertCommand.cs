@@ -37,8 +37,7 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
                 {
                     CreditCard creditCard = _mapper.Map<CreditCard>(request.CreditCardDto);
                     CreditCard insertResponse = await _creditCardRepository.Insert(creditCard);
-                    _cacheRepository.SetData(insertResponse.Name, insertResponse);
-
+                   
 
                     if (insertResponse.Id < 1)
                     {                        
@@ -47,6 +46,7 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
                     }
                     else
                     {
+                        _cacheRepository.SetData(insertResponse.Name, insertResponse);
                         _logger.Insert(LogTypes.Information, "CreditCardInsertCommand Success");
                         response = ApiResponse.SuccessResponse(insertResponse);
                     }

@@ -4,6 +4,9 @@ using MP.Core.Domain.Entities;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 
 namespace MP.Infrastructure.Persistance.Redis
 {
@@ -42,6 +45,21 @@ namespace MP.Infrastructure.Persistance.Redis
         {
             IDatabase database = _connectionMultiplexer.GetDatabase(Convert.ToInt32(_configuration.GetSection($"RedisTableNumbers:{baseEntity.GetType().Name}").Value));
             if (database.KeyExists(key)) database.KeyDelete(key);
+        }
+
+        public List<T> GetAll<T>()
+        {
+            List<T> data = new List<T>();
+            ConfigurationOptions options = ConfigurationOptions.Parse(_configuration.GetSection("ConnectionStrings:RedisConnectionString").Value);
+            ConnectionMultiplexer connection = ConnectionMultiplexer.Connect(options);
+            IDatabase database = _connectionMultiplexer.GetDatabase(Convert.ToInt32(_configuration.GetSection($"RedisTableNumbers:{typeof(T).GetType().Name}").Value));
+            EndPoint endPoint = connection.GetEndPoints().First();
+            RedisKey[] keys = connection.GetServer(endPoint).Keys(pattern: "*").ToArray();
+            foreach (var key in keys)
+            {
+                data.Add(JsonConvert.DeserializeObject<T>(database.StringGet(key)));
+            }
+            return data;
         }
     }
 }

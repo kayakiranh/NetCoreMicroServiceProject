@@ -17,11 +17,13 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
         {
             private readonly ICustomerRepository _customerRepository;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CustomerListQueryHandler(ICustomerRepository customerRepository, ILoggerRepository logger)
+            public CustomerListQueryHandler(ICustomerRepository customerRepository, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _customerRepository = customerRepository;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CustomerListQuery request, CancellationToken cancellationToken)
@@ -29,7 +31,7 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    List<Customer> getAllResponse = await _customerRepository.GetAll();
+                    List<Customer> getAllResponse = _cacheRepository.GetAll<Customer>(); //await _customerRepository.GetAll();
                     if (!getAllResponse.Any())
                     {
                         _logger.Insert(LogTypes.Error, "CustomerListQuery DataNotFound", null, request);

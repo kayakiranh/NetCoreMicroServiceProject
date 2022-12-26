@@ -17,11 +17,13 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
         {
             private readonly ICustomerRepository _customerRepository;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CustomerGetByIdentityNumberQueryHandler(ICustomerRepository customerRepository, ILoggerRepository logger)
+            public CustomerGetByIdentityNumberQueryHandler(ICustomerRepository customerRepository, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _customerRepository = customerRepository;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CustomerGetByIdentityNumberQuery request, CancellationToken cancellationToken)

@@ -17,11 +17,13 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
         {
             private readonly ICreditCardRepository _creditCardRepository;
             private readonly ILoggerRepository _logger;
+            private readonly ICacheRepository _cacheRepository;
 
-            public CreditCardRemoveCommandHandler(ICreditCardRepository creditCardRepository, ILoggerRepository logger)
+            public CreditCardRemoveCommandHandler(ICreditCardRepository creditCardRepository, ILoggerRepository logger, ICacheRepository cacheRepository)
             {
                 _creditCardRepository = creditCardRepository;
                 _logger = logger;
+                _cacheRepository = cacheRepository;
             }
 
             public async Task<ApiResponse> Handle(CreditCardRemoveCommand request, CancellationToken cancellationToken)
@@ -36,12 +38,13 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
 
                         CreditCard check = await _creditCardRepository.GetById(request.Id);
                         if (check.Id != 0)
-                        {                            
+                        {
                             _logger.Insert(LogTypes.Error, "CreditCardRemoveCommand Error", null, request);
                             response = ApiResponse.ErrorResponse("CreditCardRemoveCommand Error");
                         }
                         else
                         {
+                            _cacheRepository.RemoveData(check, check.Name);
                             _logger.Insert(LogTypes.Information, "CreditCardRemoveCommand Success");
                             response = ApiResponse.SuccessResponse(getByIdResponse);
                         }
