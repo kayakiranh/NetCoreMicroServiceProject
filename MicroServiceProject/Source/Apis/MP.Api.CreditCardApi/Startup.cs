@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MP.Core.Application.Repositories;
+using MP.Core.Domain.Entities;
 using MP.Infrastructure.Logger;
 using MP.Infrastructure.Mailer;
 using MP.Infrastructure.Persistance.Mssql;
@@ -55,19 +57,6 @@ namespace MP.Api.CreditCardApi
             PersistanceMssqlRegister.Register(services);
             PersistanceRedisRegister.Register(services);
 
-            //services.Configure<BrotliCompressionProviderOptions>(options =>
-            //{
-            //    options.Level = CompressionLevel.Optimal;
-            //});
-
-            services.Configure(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-                options.Secure = CookieSecurePolicy.Always;
-                options.HttpOnly = HttpOnlyPolicy.Always;
-            });
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -83,7 +72,7 @@ namespace MP.Api.CreditCardApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için 'http://localhost:4479/auth/test-user' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
+                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için 'http://localhost:44305/auth/test-user' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
@@ -105,11 +94,14 @@ namespace MP.Api.CreditCardApi
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:56689").AllowAnyHeader().AllowAnyMethod();
+                        builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod();
                     });
             });
 
-
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
             services.AddResponseCompression(options =>
             {
                 options.Providers.Add<BrotliCompressionProvider>();
@@ -128,7 +120,6 @@ namespace MP.Api.CreditCardApi
             {
                 await next();
             });
-            app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseRouting();
             app.UseAuthentication();

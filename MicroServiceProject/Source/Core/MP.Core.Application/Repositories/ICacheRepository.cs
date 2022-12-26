@@ -1,4 +1,4 @@
-﻿using System;
+﻿using MP.Core.Domain.Entities;
 
 namespace MP.Core.Application.Repositories
 {
@@ -7,8 +7,8 @@ namespace MP.Core.Application.Repositories
     /// </summary>
     public interface ICacheRepository
     {
-        T GetData<T>(int dbNumber, string key);
-        void SetData<T>(int dbNumber, string key, T value);
-        void RemoveData(int dbNumber, string key);
+        T GetData<T>(string key);
+        void SetData<T>(string key, T value);
+        void RemoveData(BaseEntity baseEntity, string key);
     }
 }

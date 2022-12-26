@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using MP.Core.Application.Repositories;
+using MP.Core.Domain.Entities;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 using System;
@@ -20,25 +21,27 @@ namespace MP.Infrastructure.Persistance.Redis
             _connectionMultiplexer = ConnectionMultiplexer.Connect(_configuration.GetSection("ConnectionStrings:RedisConnectionString").Value);
         }
 
-        public T GetData<T>(int dbNumber, string key)
+        public T GetData<T>(string key)
         {
-            IDatabase _database = _connectionMultiplexer.GetDatabase(dbNumber);
-            var value = _database.StringGet(key);
+            IDatabase database = _connectionMultiplexer.GetDatabase(Convert.ToInt32(_configuration.GetSection($"RedisTableNumbers:{typeof(T).GetType().Name}").Value));
+            RedisValue value = database.StringGet(key);
             if (!string.IsNullOrEmpty(value))
             {
                 return JsonConvert.DeserializeObject<T>(value);
             }
             return default;
         }
-        public void SetData<T>(int dbNumber, string key, T value)
+
+        public void SetData<T>(string key, T value)
         {
-            IDatabase _database = _connectionMultiplexer.GetDatabase(dbNumber);
-            _database.StringSet(key, JsonConvert.SerializeObject(value), TimeSpan.FromHours(24));
+            IDatabase database = _connectionMultiplexer.GetDatabase(Convert.ToInt32(_configuration.GetSection($"RedisTableNumbers:{typeof(T).GetType().Name}").Value));
+            database.StringSet(key, JsonConvert.SerializeObject(value), TimeSpan.FromHours(24));
         }
-        public void RemoveData(int dbNumber, string key)
+
+        public void RemoveData(BaseEntity baseEntity, string key)
         {
-            IDatabase _database = _connectionMultiplexer.GetDatabase(dbNumber);
-            if (_database.KeyExists(key)) _database.KeyDelete(key);
+            IDatabase database = _connectionMultiplexer.GetDatabase(Convert.ToInt32(_configuration.GetSection($"RedisTableNumbers:{baseEntity.GetType().Name}").Value));
+            if (database.KeyExists(key)) database.KeyDelete(key);
         }
     }
 }

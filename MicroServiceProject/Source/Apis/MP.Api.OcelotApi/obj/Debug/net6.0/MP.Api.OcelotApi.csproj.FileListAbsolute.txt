@@ -125,3 +125,6 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.OcelotApi\bin\Debug\net6.0\MP.Core.Application.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.OcelotApi\bin\Debug\net6.0\MP.Core.Domain.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.OcelotApi\bin\Debug\net6.0\MP.Infrastructure.Helper.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.OcelotApi\bin\Debug\net6.0\ocelot.json
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.OcelotApi\bin\Debug\net6.0\Kros.Utils.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.OcelotApi\bin\Debug\net6.0\MMLib.SwaggerForOcelot.dll
