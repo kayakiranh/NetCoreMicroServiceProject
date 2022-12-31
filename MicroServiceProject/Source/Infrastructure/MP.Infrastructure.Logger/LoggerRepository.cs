@@ -26,15 +26,19 @@ namespace MP.Infrastructure.Logger
                 case LogTypes.Information:
                     Logger.LogInformation(message, methodParameters);
                     break;
+
                 case LogTypes.Warning:
                     Logger.LogWarning(message, methodParameters);
                     break;
+
                 case LogTypes.Error:
                     Logger.LogError(exception, message, methodParameters);
                     break;
+
                 case LogTypes.Critical:
                     Logger.LogCritical(exception, message, methodParameters);
                     break;
+
                 default:
                     break;
             }

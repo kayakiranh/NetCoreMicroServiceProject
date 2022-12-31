@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using MediatR;
-using System;
 using MP.Infrastructure.Logger;
 using MP.Infrastructure.Mailer;
-using MP.Infrastructure.Persistance.Redis;
 using MP.Infrastructure.Persistance.Mssql;
+using MP.Infrastructure.Persistance.Redis;
+using System;
 
 namespace MP.Api.CustomerApi
 {
@@ -81,6 +81,7 @@ namespace MP.Api.CustomerApi
             });
             services.AddMediatR(typeof(Program));
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

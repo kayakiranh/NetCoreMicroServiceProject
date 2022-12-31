@@ -35,6 +35,5 @@ namespace MP.Core.Domain.Entities
         [Required]
         [Column(TypeName = "decimal(18,2)")]
         public decimal MaximumLimit { get; set; } //Maximum limit, 10000
-
     }
 }

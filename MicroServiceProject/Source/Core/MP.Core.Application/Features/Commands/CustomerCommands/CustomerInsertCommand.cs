@@ -1,13 +1,13 @@
-﻿using MP.Core.Domain.Entities;
-using System;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
-using MP.Core.Application.Repositories;
-using System.Threading;
 using MP.Core.Application.DataTransferObjects;
-using MP.Core.Domain.Enums;
+using MP.Core.Application.Repositories;
 using MP.Core.Application.Wrapper;
+using MP.Core.Domain.Entities;
+using MP.Core.Domain.Enums;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MP.Core.Application.Features.Commands.CustomerCommands
 {
@@ -39,7 +39,7 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
                     Customer insertResponse = await _customerRepository.Insert(customer);
 
                     if (insertResponse.Id < 1)
-                    {                        
+                    {
                         _logger.Insert(LogTypes.Error, "CustomerInsertCommand Error", null, request);
                         response = ApiResponse.ErrorResponse("CustomerInsertCommand Error");
                     }

@@ -58,17 +58,15 @@ namespace MP.Api.IdentityApi.Controllers
         [HttpPost("test-user")]
         public async Task<IActionResult> GetSwaggerToken()
         {
-            Customer customer = new Customer();
-            customer = await _customerRepository.Login(_configuration["JWT:SwaggerUserEmail"], _configuration["JWT:SwaggerUserPassword"]);
+            Customer customer = await _customerRepository.Login(_configuration["JWT:SwaggerUserEmail"], _configuration["JWT:SwaggerUserPassword"]);
             if (customer.Id == 0)
             {
-                Random rnd = new Random();
                 customer = await _customerRepository.Insert(new Customer
                 {
                     EmailAddress = _configuration["JWT:SwaggerUserEmail"],
                     FullName = "Swagger Test User",
                     IdentityNumber = "1234567890",
-                    MonthlyIncome = rnd.Next(3000, 50000),
+                    MonthlyIncome = 12500,
                     Password = _configuration["JWT:SwaggerUserPassword"],
                     Phone = "+905551112233",
                     Status = (int)EntityStatus.Active,
@@ -77,7 +75,7 @@ namespace MP.Api.IdentityApi.Controllers
                 customer = await _customerRepository.Login(customer.EmailAddress, customer.Password);
                 if (customer.Id > 0) return Ok(customer);
             }
-            return BadRequest();       
+            return BadRequest();
         }
     }
 }

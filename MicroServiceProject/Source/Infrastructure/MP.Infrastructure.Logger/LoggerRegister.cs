@@ -12,7 +12,7 @@ namespace MP.Infrastructure.Logger
         public static void Register(this IServiceCollection services)
         {
             services.AddTransient<ILoggerRepository, LoggerRepository>();
-            services.AddSingleton<ILogger>(provider =>  provider.GetRequiredService<ILogger>());
+            services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger>());
         }
     }
 }

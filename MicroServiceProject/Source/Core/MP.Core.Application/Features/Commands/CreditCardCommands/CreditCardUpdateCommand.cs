@@ -1,13 +1,13 @@
-﻿using MP.Core.Domain.Entities;
-using System;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
-using MP.Core.Application.Repositories;
-using System.Threading;
 using MP.Core.Application.DataTransferObjects;
-using MP.Core.Domain.Enums;
+using MP.Core.Application.Repositories;
 using MP.Core.Application.Wrapper;
+using MP.Core.Domain.Entities;
+using MP.Core.Domain.Enums;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MP.Core.Application.Features.Commands.CreditCardCommands
 {
@@ -37,7 +37,6 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
                 {
                     CreditCard CreditCard = _mapper.Map<CreditCard>(request.CreditCardDto);
                     CreditCard UpdateResponse = await _creditCardRepository.Update(CreditCard);
-                   
 
                     if (UpdateResponse.Id < 1)
                     {

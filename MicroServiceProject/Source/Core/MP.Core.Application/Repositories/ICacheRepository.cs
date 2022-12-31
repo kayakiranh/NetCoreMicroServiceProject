@@ -9,8 +9,11 @@ namespace MP.Core.Application.Repositories
     public interface ICacheRepository
     {
         T GetData<T>(string key);
+
         void SetData<T>(string key, T value);
+
         void RemoveData(BaseEntity baseEntity, string key);
+
         List<T> GetAll<T>();
     }
 }

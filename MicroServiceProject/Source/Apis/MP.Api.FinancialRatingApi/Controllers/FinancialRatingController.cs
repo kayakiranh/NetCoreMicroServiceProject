@@ -4,9 +4,9 @@ using Microsoft.Extensions.Configuration;
 using MP.Core.Application.Repositories;
 using MP.Core.Application.ViewModels;
 using MP.Core.Domain.Entities;
+using MP.Core.Domain.Enums;
 using MP.Infrastructure.Helper;
 using System.Threading.Tasks;
-using MP.Core.Domain.Enums;
 
 namespace MP.Api.FinancialRatingApi.Controllers
 {
@@ -28,7 +28,6 @@ namespace MP.Api.FinancialRatingApi.Controllers
             _configuration = configuration;
         }
 
-        
         [HttpPost("calculate")]
         public async Task<IActionResult> Calculate([FromBody] FinancialRatingViewModel model)
         {
@@ -44,7 +43,7 @@ namespace MP.Api.FinancialRatingApi.Controllers
                 _loggerRepository.Insert(LogTypes.Information, "ConnectAnyFinancialService BadRequest", null, customer, model);
                 return BadRequest();
             }
-            
+
             //Fake client call
             FinancialApiResponse fakeApiResponse = await FakeApiClient(model.IdentityNumber);
             if (fakeApiResponse == null)
@@ -78,7 +77,7 @@ namespace MP.Api.FinancialRatingApi.Controllers
 
             return await Task.FromResult(new FinancialApiResponse
             {
-                FirstName = "Hüseyin",            
+                FirstName = "Hüseyin",
                 LastName = "Kayakıran",
                 Address = "Fake Address",
                 Identity = "123456789",

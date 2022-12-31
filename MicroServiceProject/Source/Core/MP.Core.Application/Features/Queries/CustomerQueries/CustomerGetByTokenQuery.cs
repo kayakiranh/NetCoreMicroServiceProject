@@ -1,11 +1,11 @@
-﻿using MP.Core.Domain.Entities;
-using System;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MP.Core.Application.Repositories;
-using System.Threading;
-using MP.Core.Domain.Enums;
 using MP.Core.Application.Wrapper;
+using MP.Core.Domain.Entities;
+using MP.Core.Domain.Enums;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MP.Core.Application.Features.Queries.CustomerQueries
 {

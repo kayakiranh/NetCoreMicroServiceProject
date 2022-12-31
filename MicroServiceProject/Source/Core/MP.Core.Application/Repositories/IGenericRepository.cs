@@ -11,11 +11,17 @@ namespace MP.Core.Application.Repositories
     public interface IGenericRepository<T> where T : BaseEntity
     {
         public Task<List<T>> GetAll();
+
         public Task<int> GetAllCount();
-        public Task<T> GetById(long id);        
+
+        public Task<T> GetById(long id);
+
         public Task<T> Insert(T model);
+
         public Task<List<T>> MultipleInsert(List<T> model);
+
         public Task<T> Update(T model);
+
         public void Remove(int id);
     }
 }

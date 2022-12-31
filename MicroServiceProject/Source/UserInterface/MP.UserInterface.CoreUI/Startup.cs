@@ -21,8 +21,6 @@ namespace MP.UserInterface.CoreUI
                 app.UseDeveloperExceptionPage();
             }
 
-            
-
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

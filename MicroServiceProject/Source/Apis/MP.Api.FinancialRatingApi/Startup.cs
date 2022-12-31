@@ -53,7 +53,7 @@ namespace MP.Api.FinancialRatingApi
             MailerRegister.Register(services);
             PersistanceMssqlRegister.Register(services);
             PersistanceRedisRegister.Register(services);
-            
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

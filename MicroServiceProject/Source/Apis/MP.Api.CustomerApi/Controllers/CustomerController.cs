@@ -81,7 +81,6 @@ namespace MP.Api.CustomerApi.Controllers
             return Ok(response);
         }
 
-
         [HttpGet("by-token")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
@@ -93,7 +92,6 @@ namespace MP.Api.CustomerApi.Controllers
 
             return Ok(response);
         }
-
 
         [HttpGet("by-identity")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]

@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace MP.Infrastructure.Helper
 {
     /// <summary>
-    /// Ip Helper. 
+    /// Ip Helper.
     /// Work with jsonapi.
     /// https://getjsonip.com/#docs
     /// </summary>
@@ -25,8 +25,10 @@ namespace MP.Infrastructure.Helper
         {
             [JsonPropertyName("ip")]
             public string IP { get; set; }
+
             [JsonPropertyName("geo-ip")]
             public string GeoIp { get; set; }
+
             [JsonPropertyName("API Help")]
             public string ApiHelp { get; set; }
         }

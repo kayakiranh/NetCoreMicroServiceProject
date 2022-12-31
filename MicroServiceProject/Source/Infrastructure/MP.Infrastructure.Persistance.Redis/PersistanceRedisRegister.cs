@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MP.Core.Application.Repositories;
-using MP.Core.Domain.Entities;
 
 namespace MP.Infrastructure.Persistance.Redis
 {

@@ -30,7 +30,6 @@ namespace MP.Api.OcelotApi
             app.UseSwaggerForOcelotUI(opt =>
             {
                 opt.PathToSwaggerGenerator = "/swagger/docs";
-
             }).UseOcelot().Wait();
         }
     }

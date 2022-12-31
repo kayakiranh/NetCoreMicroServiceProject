@@ -66,7 +66,6 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
             _dbContext.Update(customer);
 
             return customer;
-
         }
     }
 }
