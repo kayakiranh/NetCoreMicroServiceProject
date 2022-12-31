@@ -40,16 +40,16 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
 
                     Customer updateResponse = await _customerRepository.Update(customer);
 
-                    if (updateResponse.Id > 0)
-                    {
-                        _cacheRepository.SetData(updateResponse.EmailAddress, updateResponse);
-                        _logger.Insert(LogTypes.Information, "CustomerUpdateCommand Success");
-                        response = ApiResponse.SuccessResponse(updateResponse);
-                    }
-                    else
+                    if (updateResponse.Id < 1)
                     {
                         _logger.Insert(LogTypes.Error, "CustomerUpdateCommand Error", null, request);
                         response = ApiResponse.ErrorResponse("CustomerUpdateCommand Error");
+                    }
+                    else
+                    {
+                        _cacheRepository.SetData(updateResponse.IdentityNumber, updateResponse);
+                        _logger.Insert(LogTypes.Information, "CustomerUpdateCommand Success");
+                        response = ApiResponse.SuccessResponse(updateResponse);
                     }
                 }
                 catch (OperationCanceledException ex)

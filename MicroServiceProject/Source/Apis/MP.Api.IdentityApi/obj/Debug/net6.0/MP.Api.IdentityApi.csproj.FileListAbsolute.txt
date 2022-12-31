@@ -114,3 +114,4 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.IdentityApi\obj\Debug\net6.0\ref\MP.Api.IdentityApi.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.IdentityApi\obj\Debug\net6.0\MP.Api.IdentityApi.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.IdentityApi\obj\Debug\net6.0\MP.Api.IdentityApi.genruntimeconfig.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.IdentityApi\bin\Debug\net6.0\NRediSearch.dll

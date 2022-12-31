@@ -31,16 +31,23 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    Customer getByIdentityNumberResponse = await _customerRepository.GetByIdentityNumber(request.IdentityNumber);
-                    if (getByIdentityNumberResponse == null)
+                    Customer getByIdentityNumberResponse = _cacheRepository.GetData<Customer>(request.IdentityNumber);
+                    if (getByIdentityNumberResponse.Id == 0)
                     {
-                        _logger.Insert(LogTypes.Error, "CustomerGetByIdentityNumberQuery DataNotFound", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerGetByIdentityNumberQuery DataNotFound");
-                    }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Information, "CustomerGetByIdentityNumberQuery Success");
-                        response = ApiResponse.SuccessResponse(getByIdentityNumberResponse);
+                        _logger.Insert(LogTypes.Error, "CustomerGetByIdentityNumberQuery Cache DataNotFound", null, request);
+
+                        getByIdentityNumberResponse = await _customerRepository.GetByIdentityNumber(request.IdentityNumber);
+                        if (getByIdentityNumberResponse.Id == 0)
+                        {
+                            _logger.Insert(LogTypes.Error, "CustomerGetByIdentityNumberQuery DataNotFound", null, request);
+                            response = ApiResponse.ErrorResponse("CustomerGetByIdentityNumberQuery DataNotFound");
+                        }
+                        else
+                        {
+                            _cacheRepository.SetData<Customer>(getByIdentityNumberResponse.IdentityNumber, getByIdentityNumberResponse);
+                            _logger.Insert(LogTypes.Information, "CustomerGetByIdentityNumberQuery Success");
+                            response = ApiResponse.SuccessResponse(getByIdentityNumberResponse);
+                        }
                     }
                 }
                 catch (OperationCanceledException ex)

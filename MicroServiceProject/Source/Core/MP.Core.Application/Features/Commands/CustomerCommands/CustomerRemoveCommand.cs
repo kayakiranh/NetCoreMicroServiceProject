@@ -44,7 +44,7 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
                         }
                         else
                         {
-                            _cacheRepository.RemoveData(check, check.EmailAddress);
+                            _cacheRepository.RemoveData(check, check.IdentityNumber);
                             _logger.Insert(LogTypes.Information, "CustomerRemoveCommand Success");
                             response = ApiResponse.SuccessResponse(getByIdResponse);
                         }

@@ -31,16 +31,22 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    Customer getByTokenResponse = await _customerRepository.GetByToken(request.Token);
+                    Customer getByTokenResponse = _cacheRepository.GetByValue<Customer>("Token",request.Token);
                     if (getByTokenResponse.Id == 0)
                     {
-                        _logger.Insert(LogTypes.Error, "CustomerGetByTokenQuery DataNotFound", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerGetByTokenQuery DataNotFound");
-                    }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Information, "CustomerGetByTokenQuery Success");
-                        response = ApiResponse.SuccessResponse(getByTokenResponse);
+                        _logger.Insert(LogTypes.Error, "CustomerGetByTokenQuery Cache DataNotFound", null, request);
+                        getByTokenResponse = await _customerRepository.GetByToken(request.Token);
+                        if (getByTokenResponse.Id == 0)
+                        {
+                            _logger.Insert(LogTypes.Error, "CustomerGetByTokenQuery DataNotFound", null, request);
+                            response = ApiResponse.ErrorResponse("CustomerGetByTokenQuery DataNotFound");
+                        }
+                        else
+                        {
+                            _cacheRepository.SetData<Customer>(getByTokenResponse.IdentityNumber, getByTokenResponse);
+                            _logger.Insert(LogTypes.Error, "CustomerGetByTokenQuery Success", null, request);
+                            response = ApiResponse.ErrorResponse("CustomerGetByTokenQuery Success");
+                        }
                     }
                 }
                 catch (OperationCanceledException ex)

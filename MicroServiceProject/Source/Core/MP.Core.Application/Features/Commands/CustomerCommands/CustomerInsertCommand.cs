@@ -45,7 +45,7 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
                     }
                     else
                     {
-                        _cacheRepository.SetData(insertResponse.EmailAddress, insertResponse);
+                        _cacheRepository.SetData(insertResponse.IdentityNumber, insertResponse);
                         _logger.Insert(LogTypes.Information, "CustomerInsertCommand Success");
                         response = ApiResponse.SuccessResponse(insertResponse);
                     }

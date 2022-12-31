@@ -633,6 +633,10 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "NRediSearch": {
+              "target": "Package",
+              "version": "[2.2.79, )"
             }
           },
           "imports": [

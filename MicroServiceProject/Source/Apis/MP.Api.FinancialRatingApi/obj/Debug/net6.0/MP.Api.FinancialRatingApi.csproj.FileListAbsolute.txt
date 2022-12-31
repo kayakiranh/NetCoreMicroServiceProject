@@ -114,3 +114,4 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.FinancialRatingApi\obj\Debug\net6.0\ref\MP.Api.FinancialRatingApi.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.FinancialRatingApi\obj\Debug\net6.0\MP.Api.FinancialRatingApi.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.FinancialRatingApi\obj\Debug\net6.0\MP.Api.FinancialRatingApi.genruntimeconfig.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.FinancialRatingApi\bin\Debug\net6.0\NRediSearch.dll

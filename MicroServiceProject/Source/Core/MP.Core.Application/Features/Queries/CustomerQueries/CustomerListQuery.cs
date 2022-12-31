@@ -31,16 +31,22 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    List<Customer> getAllResponse = _cacheRepository.GetAll<Customer>(); //await _customerRepository.GetAll();
+                    List<Customer> getAllResponse = _cacheRepository.GetAll<Customer>();
                     if (!getAllResponse.Any())
                     {
-                        _logger.Insert(LogTypes.Error, "CustomerListQuery DataNotFound", null, request);
-                        response = ApiResponse.ErrorResponse("CustomerListQuery DataNotFound");
-                    }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Information, "CustomerListQuery Success");
-                        response = ApiResponse.SuccessResponse(getAllResponse);
+                        _logger.Insert(LogTypes.Error, "CustomerListQuery Cache DataNotFound", null, request);
+                        getAllResponse = await _customerRepository.GetAll();
+                        if (!getAllResponse.Any())
+                        {
+                            _logger.Insert(LogTypes.Error, "CustomerListQuery DataNotFound", null, request);
+                            response = ApiResponse.ErrorResponse("CustomerListQuery DataNotFound");
+                        }
+                        else
+                        {
+                            getAllResponse.ForEach(x => _cacheRepository.SetData(x.IdentityNumber, x));
+                            _logger.Insert(LogTypes.Information, "CustomerListQuery Success");
+                            response = ApiResponse.SuccessResponse(getAllResponse);
+                        }                   
                     }
                 }
                 catch (OperationCanceledException ex)

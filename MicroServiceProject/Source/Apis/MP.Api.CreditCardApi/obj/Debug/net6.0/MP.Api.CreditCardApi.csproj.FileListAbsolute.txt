@@ -114,3 +114,4 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\obj\Debug\net6.0\ref\MP.Api.CreditCardApi.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\obj\Debug\net6.0\MP.Api.CreditCardApi.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\obj\Debug\net6.0\MP.Api.CreditCardApi.genruntimeconfig.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net6.0\NRediSearch.dll

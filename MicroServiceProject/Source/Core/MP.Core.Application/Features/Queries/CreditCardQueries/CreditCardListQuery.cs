@@ -34,13 +34,19 @@ namespace MP.Core.Application.Features.Queries.CreditCardQueries
                     List<CreditCard> getAllResponse = await _creditCardRepository.GetAll();
                     if (!getAllResponse.Any())
                     {
-                        _logger.Insert(LogTypes.Error, "CreditCardListQuery DataNotFound", null, request);
-                        response = ApiResponse.ErrorResponse("CreditCardListQuery DataNotFound");
-                    }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Information, "CreditCardListQuery Success");
-                        response = ApiResponse.SuccessResponse(getAllResponse);
+                        _logger.Insert(LogTypes.Error, "CreditCardListQuery Cache DataNotFound", null, request);
+                        getAllResponse = await _creditCardRepository.GetAll();
+                        if (!getAllResponse.Any())
+                        {
+                            _logger.Insert(LogTypes.Error, "CreditCardListQuery DataNotFound", null, request);
+                            response = ApiResponse.ErrorResponse("CreditCardListQuery DataNotFound");
+                        }
+                        else
+                        {
+                            getAllResponse.ForEach(x => _cacheRepository.SetData(x.Name, x));
+                            _logger.Insert(LogTypes.Information, "CreditCardListQuery Success");
+                            response = ApiResponse.SuccessResponse(getAllResponse);
+                        }
                     }
                 }
                 catch (OperationCanceledException ex)

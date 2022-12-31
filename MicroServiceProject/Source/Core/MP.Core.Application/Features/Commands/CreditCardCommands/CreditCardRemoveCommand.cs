@@ -34,20 +34,23 @@ namespace MP.Core.Application.Features.Commands.CreditCardCommands
                     CreditCard getByIdResponse = await _creditCardRepository.GetById(request.Id);
                     if (getByIdResponse.Id == 0)
                     {
-                        _creditCardRepository.Remove(request.Id);
+                        _logger.Insert(LogTypes.Error, "CreditCardRemoveCommand DataNotFound", null, request);
+                        response = ApiResponse.ErrorResponse("CreditCardRemoveCommand DataNotFound");
+                    }
 
-                        CreditCard check = await _creditCardRepository.GetById(request.Id);
-                        if (check.Id != 0)
-                        {
-                            _logger.Insert(LogTypes.Error, "CreditCardRemoveCommand Error", null, request);
-                            response = ApiResponse.ErrorResponse("CreditCardRemoveCommand Error");
-                        }
-                        else
-                        {
-                            _cacheRepository.RemoveData(check, check.Name);
-                            _logger.Insert(LogTypes.Information, "CreditCardRemoveCommand Success");
-                            response = ApiResponse.SuccessResponse(getByIdResponse);
-                        }
+                    _creditCardRepository.Remove(request.Id);
+
+                    CreditCard check = await _creditCardRepository.GetById(request.Id);
+                    if (check.Id != 0)
+                    {
+                        _logger.Insert(LogTypes.Error, "CreditCardRemoveCommand Error", null, request);
+                        response = ApiResponse.ErrorResponse("CreditCardRemoveCommand Error");
+                    }
+                    else
+                    {
+                        _cacheRepository.RemoveData(check, check.Name);
+                        _logger.Insert(LogTypes.Information, "CreditCardRemoveCommand Success");
+                        response = ApiResponse.SuccessResponse(getByIdResponse);
                     }
                 }
                 catch (OperationCanceledException ex)

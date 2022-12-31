@@ -114,3 +114,4 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CustomerApi\bin\Debug\net6.0\MP.Infrastructure.Mailer.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CustomerApi\bin\Debug\net6.0\MP.Infrastructure.Persistance.Mssql.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CustomerApi\bin\Debug\net6.0\MP.Infrastructure.Persistance.Redis.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CustomerApi\bin\Debug\net6.0\NRediSearch.dll

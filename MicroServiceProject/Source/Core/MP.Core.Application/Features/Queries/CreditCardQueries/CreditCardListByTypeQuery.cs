@@ -33,16 +33,21 @@ namespace MP.Core.Application.Features.Queries.CreditCardQueries
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    List<CreditCard> listByTypeResponse = await _creditCardRepository.ListByType(request.CreditCardType);
+                    List<CreditCard> listByTypeResponse = _cacheRepository.GetAll<CreditCard>();
                     if (!listByTypeResponse.Any())
                     {
-                        _logger.Insert(LogTypes.Error, "CreditCardListByTypeQuery DataNotFound", null, request);
-                        response = ApiResponse.ErrorResponse("CreditCardListByTypeQuery DataNotFound");
-                    }
-                    else
-                    {
-                        _logger.Insert(LogTypes.Information, "CreditCardListByTypeQuery Success");
-                        response = ApiResponse.SuccessResponse(listByTypeResponse);
+                        listByTypeResponse = await _creditCardRepository.ListByType(request.CreditCardType);
+                        if (!listByTypeResponse.Any())
+                        {
+                            _logger.Insert(LogTypes.Error, "CreditCardListByTypeQuery DataNotFound", null, request);
+                            response = ApiResponse.ErrorResponse("CreditCardListByTypeQuery DataNotFound");
+                        }
+                        else
+                        {
+                            listByTypeResponse.ForEach(x => _cacheRepository.SetData(x.Name, x));
+                            _logger.Insert(LogTypes.Information, "CreditCardListByTypeQuery Success");
+                            response = ApiResponse.SuccessResponse(listByTypeResponse);
+                        }
                     }
                 }
                 catch (OperationCanceledException ex)
