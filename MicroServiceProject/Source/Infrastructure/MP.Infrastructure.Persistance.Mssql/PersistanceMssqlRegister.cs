@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using MP.Core.Application.Repositories;
+using MP.Infrastructure.Logger;
 using MP.Infrastructure.Persistance.Mssql.Repositories;
 
 namespace MP.Infrastructure.Persistance.Mssql
@@ -11,10 +13,11 @@ namespace MP.Infrastructure.Persistance.Mssql
     {
         public static void Register(this IServiceCollection services)
         {
-            services.AddDbContext<MicroServiceDbContext>(ServiceLifetime.Scoped);
-            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddTransient<ICustomerRepository, CustomerRepository>();
-            services.AddTransient<ICreditCardRepository, CreditCardRepository>();
+            services.AddDbContext<MicroServiceDbContext>(ServiceLifetime.Singleton);
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICreditCardRepository, CreditCardRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            LoggerRegister.Register(services);
         }
     }
 }

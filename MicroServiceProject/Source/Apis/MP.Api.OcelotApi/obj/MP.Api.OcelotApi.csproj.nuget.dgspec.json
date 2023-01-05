@@ -22,15 +22,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Infrastructure\\MP.Infrastructure.Logger\\MP.Infrastructure.Logger.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Infrastructure\\MP.Infrastructure.Logger\\MP.Infrastructure.Logger.csproj"
@@ -54,26 +54,12 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
-            "MMLib.SwaggerForOcelot": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[7.0.1, )"
-            },
             "Ocelot": {
               "target": "Package",
-              "version": "[18.0.0, )"
+              "version": "[16.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -120,15 +106,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Domain\\MP.Core.Domain.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Domain\\MP.Core.Domain.csproj"
@@ -146,8 +132,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -211,15 +197,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -230,8 +216,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "imports": [
             "net461",
             "net462",
@@ -269,15 +255,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {}
           }
         },
@@ -288,8 +274,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "HtmlSanitizer": {
               "target": "Package",
@@ -337,15 +323,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj"
@@ -363,8 +349,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.Extensions.Logging": {
               "target": "Package",
@@ -377,6 +363,22 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.2, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Serilog.Extensions.Logging.File": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Serilog.Settings.AppSettings": {
+              "target": "Package",
+              "version": "[2.2.2, )"
             }
           },
           "imports": [
@@ -416,18 +418,21 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj"
+              },
+              "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Infrastructure\\MP.Infrastructure.Logger\\MP.Infrastructure.Logger.csproj": {
+                "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Infrastructure\\MP.Infrastructure.Logger\\MP.Infrastructure.Logger.csproj"
               }
             }
           }
@@ -439,8 +444,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -496,21 +501,24 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj"
               },
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Domain\\MP.Core.Domain.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Domain\\MP.Core.Domain.csproj"
+              },
+              "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Infrastructure\\MP.Infrastructure.Logger\\MP.Infrastructure.Logger.csproj": {
+                "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Infrastructure\\MP.Infrastructure.Logger\\MP.Infrastructure.Logger.csproj"
               }
             }
           }
@@ -522,44 +530,44 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Abstractions": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Analyzers": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[5.0.12, )"
             }
           },
           "imports": [
@@ -599,15 +607,15 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net5.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net5.0": {
+            "targetAlias": "net5.0",
             "projectReferences": {
               "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj": {
                 "projectPath": "C:\\Users\\husey\\Documents\\GitHub\\NetCoreMicroServiceProject\\MicroServiceProject\\Source\\Core\\MP.Core.Application\\MP.Core.Application.csproj"
@@ -622,8 +630,8 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.Extensions.Caching.StackExchangeRedis": {
               "target": "Package",
@@ -644,10 +652,6 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "NRediSearch": {
-              "target": "Package",
-              "version": "[2.2.79, )"
             }
           },
           "imports": [

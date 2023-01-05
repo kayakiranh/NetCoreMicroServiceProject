@@ -11,8 +11,8 @@ namespace MP.Infrastructure.Logger
     {
         public static void Register(this IServiceCollection services)
         {
-            services.AddTransient<ILoggerRepository, LoggerRepository>();
-            services.AddSingleton<ILogger>(provider => provider.GetRequiredService<ILogger>());
+            services.AddScoped<ILoggerRepository, LoggerRepository>();
+            services.AddScoped<ILogger>(provider => provider.GetRequiredService<ILogger>());
         }
     }
 }

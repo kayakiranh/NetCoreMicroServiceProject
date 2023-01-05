@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MP.Core.Application.Repositories;
+using MP.Infrastructure.Logger;
 
 namespace MP.Infrastructure.Mailer
 {
@@ -10,7 +11,8 @@ namespace MP.Infrastructure.Mailer
     {
         public static void Register(this IServiceCollection services)
         {
-            services.AddTransient<IMailerRepository, MailerRepository>();
+            services.AddScoped<IMailerRepository, MailerRepository>();
+            LoggerRegister.Register(services);
         }
     }
 }

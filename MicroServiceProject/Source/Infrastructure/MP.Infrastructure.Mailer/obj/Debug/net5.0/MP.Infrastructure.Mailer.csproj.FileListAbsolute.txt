@@ -17,3 +17,5 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\obj\Debug\net5.0\MP.Infrastructure.Mailer.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\obj\Debug\net5.0\ref\MP.Infrastructure.Mailer.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\obj\Debug\net5.0\MP.Infrastructure.Mailer.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\bin\Debug\net5.0\MP.Infrastructure.Logger.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Mailer\bin\Debug\net5.0\MP.Infrastructure.Logger.pdb

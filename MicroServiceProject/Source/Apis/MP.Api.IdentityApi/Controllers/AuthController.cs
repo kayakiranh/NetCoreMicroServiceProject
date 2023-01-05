@@ -5,7 +5,6 @@ using MP.Core.Application.Repositories;
 using MP.Core.Application.ViewModels;
 using MP.Core.Domain.Entities;
 using MP.Core.Domain.Enums;
-using System;
 using System.Threading.Tasks;
 
 namespace MP.Api.IdentityApi.Controllers

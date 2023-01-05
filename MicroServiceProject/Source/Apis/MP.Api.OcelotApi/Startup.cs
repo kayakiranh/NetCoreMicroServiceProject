@@ -19,7 +19,6 @@ namespace MP.Api.OcelotApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOcelot(Configuration);
-            services.AddSwaggerForOcelot(Configuration);
             services.AddControllers();
         }
 
@@ -27,10 +26,7 @@ namespace MP.Api.OcelotApi
         {
             app.UseRouting();
             app.UseAuthorization();
-            app.UseSwaggerForOcelotUI(opt =>
-            {
-                opt.PathToSwaggerGenerator = "/swagger/docs";
-            }).UseOcelot().Wait();
+            app.UseOcelot().Wait();
         }
     }
 }

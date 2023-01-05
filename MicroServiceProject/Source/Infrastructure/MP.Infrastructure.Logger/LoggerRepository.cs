@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Configuration;
 using MP.Core.Application.Repositories;
 using MP.Core.Domain.Enums;
+using Serilog;
 using System;
 
 namespace MP.Infrastructure.Logger
@@ -12,31 +13,31 @@ namespace MP.Infrastructure.Logger
     [Serializable]
     public class LoggerRepository : ILoggerRepository
     {
-        private readonly ILogger Logger;
+        private readonly IConfiguration _configuration;
 
-        public LoggerRepository(ILogger logger)
+        public LoggerRepository(IConfiguration configuration)
         {
-            Logger = logger;
+            _configuration = configuration;
         }
 
         public void Insert(LogTypes logType, string message, Exception exception = null, params object[] methodParameters)
         {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File(_configuration.GetSection("Serilog:WriteTo:0:Args:path").Value)
+                .CreateLogger();
+
             switch (logType)
             {
                 case LogTypes.Information:
-                    Logger.LogInformation(message, methodParameters);
+                    Log.Information(message);
                     break;
 
                 case LogTypes.Warning:
-                    Logger.LogWarning(message, methodParameters);
+                    Log.Warning(message, methodParameters);
                     break;
 
                 case LogTypes.Error:
-                    Logger.LogError(exception, message, methodParameters);
-                    break;
-
-                case LogTypes.Critical:
-                    Logger.LogCritical(exception, message, methodParameters);
+                    Log.Error(exception,message, methodParameters);
                     break;
 
                 default:

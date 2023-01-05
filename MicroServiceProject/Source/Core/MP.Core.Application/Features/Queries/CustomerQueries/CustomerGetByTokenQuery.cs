@@ -31,7 +31,7 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
                 ApiResponse response = new ApiResponse();
                 try
                 {
-                    Customer getByTokenResponse = _cacheRepository.GetByValue<Customer>("Token",request.Token);
+                    Customer getByTokenResponse = _cacheRepository.GetByValue<Customer>("Token", request.Token);
                     if (getByTokenResponse.Id == 0)
                     {
                         _logger.Insert(LogTypes.Error, "CustomerGetByTokenQuery Cache DataNotFound", null, request);

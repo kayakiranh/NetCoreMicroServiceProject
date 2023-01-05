@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using MP.Core.Application.Repositories;
 using MP.Core.Domain.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MP.Infrastructure.Persistance.Mssql.Repositories
@@ -25,6 +26,11 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
         public async Task<List<T>> GetAll()
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IQueryable<T>> GetAll2()
+        {
+            return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
 
         public async Task<int> GetAllCount()

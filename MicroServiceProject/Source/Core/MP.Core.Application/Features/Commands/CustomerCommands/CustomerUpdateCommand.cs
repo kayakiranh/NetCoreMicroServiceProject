@@ -31,6 +31,8 @@ namespace MP.Core.Application.Features.Commands.CustomerCommands
                 ApiResponse response = new ApiResponse();
                 try
                 {
+                    //IEnumarable - List >> ram()işlem varsa
+                    //IQueryable >> rame yazmaz, işlem yanımaz data gösterir
                     Customer customer = await _customerRepository.GetById(request.Id);
                     if (customer != null)
                     {

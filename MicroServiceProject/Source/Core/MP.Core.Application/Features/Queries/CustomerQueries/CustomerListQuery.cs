@@ -46,7 +46,7 @@ namespace MP.Core.Application.Features.Queries.CustomerQueries
                             getAllResponse.ForEach(x => _cacheRepository.SetData(x.IdentityNumber, x));
                             _logger.Insert(LogTypes.Information, "CustomerListQuery Success");
                             response = ApiResponse.SuccessResponse(getAllResponse);
-                        }                   
+                        }
                     }
                 }
                 catch (OperationCanceledException ex)

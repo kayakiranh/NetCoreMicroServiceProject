@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -10,21 +11,19 @@ using Microsoft.OpenApi.Models;
 using MP.Infrastructure.Logger;
 using MP.Infrastructure.Mailer;
 using MP.Infrastructure.Persistance.Mssql;
-using MP.Infrastructure.Persistance.Redis;
 using System;
+using System.IO;
 using System.IO.Compression;
+using System.Reflection;
 using System.Text;
 
 namespace MP.Api.FinancialRatingApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
+        public Startup(IConfiguration configuration, IWebHostEnvironment env) { Configuration = configuration; Env = env; }
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment Env { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -35,7 +34,7 @@ namespace MP.Api.FinancialRatingApi
                 x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(o =>
             {
-                var Key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
+                byte[] key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
                 o.SaveToken = true;
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -45,23 +44,23 @@ namespace MP.Api.FinancialRatingApi
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["JWT:Issuer"],
                     ValidAudience = Configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Key)
+                    IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
             });
 
-            LoggerRegister.Register(services);
-            MailerRegister.Register(services);
-            PersistanceMssqlRegister.Register(services);
-            PersistanceRedisRegister.Register(services);
-
+            IConfiguration configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", false).Build();
+            services.AddOptions();
+            services.AddSingleton(configuration);
             services.AddControllers();
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            PersistanceMssqlRegister.Register(services);
+            MailerRegister.Register(services);
+            LoggerRegister.Register(services);
+            services.AddLogging();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Financial Rating API",
-                    Version = "v1"
-                });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Financial Rating API", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -73,50 +72,26 @@ namespace MP.Api.FinancialRatingApi
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
-                        new OpenApiSecurityScheme {
-                            Reference = new OpenApiReference {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        Array.Empty<string>()
+                    new OpenApiSecurityScheme {
+                        Reference = new OpenApiReference {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    Array.Empty<string>()
                 }});
             });
 
             services.AddRouting(options => options.LowercaseUrls = true);
-
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod();
-                    });
-            });
-
-            services.Configure<BrotliCompressionProviderOptions>(options =>
-            {
-                options.Level = CompressionLevel.Optimal;
-            });
-
-            services.AddResponseCompression(options =>
-            {
-                options.Providers.Add<BrotliCompressionProvider>();
-            });
+            services.AddCors(options => { options.AddDefaultPolicy(builder => { builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod(); }); });
+            services.Configure<BrotliCompressionProviderOptions>(options => { options.Level = CompressionLevel.Optimal; });
+            services.AddResponseCompression(options => { options.Providers.Add<BrotliCompressionProvider>(); });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Financial Rating API V1"));
-            }
-            app.Use(async (context, next) =>
-            {
-                await next();
-            });
+            if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
+            app.Use(async (context, next) => { await next(); });
             app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseRouting();
@@ -124,10 +99,9 @@ namespace MP.Api.FinancialRatingApi
             app.UseAuthorization();
             app.UseCors();
             app.UseHsts();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Financial Rating API V1"));
         }
     }
 }

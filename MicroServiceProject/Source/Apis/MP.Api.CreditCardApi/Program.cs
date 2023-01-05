@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace MP.Api.CreditCardApi
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         { CreateHostBuilder(args).Build().Run(); }

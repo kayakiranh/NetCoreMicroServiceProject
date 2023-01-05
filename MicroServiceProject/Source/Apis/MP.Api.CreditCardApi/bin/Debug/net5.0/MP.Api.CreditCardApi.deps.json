@@ -38,7 +38,7 @@
           "MP.Infrastructure.Mailer": "1.0.0",
           "MP.Infrastructure.Persistance.Mssql": "1.0.0",
           "MP.Infrastructure.Persistance.Redis": "1.0.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.12",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.17",
           "Swashbuckle.AspNetCore": "6.4.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
@@ -477,14 +477,14 @@
           "lib/netstandard2.1/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.12": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.17": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.7.1"
         },
         "runtime": {
           "lib/net5.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "assemblyVersion": "5.0.12.0",
-            "fileVersion": "5.0.1221.52401"
+            "assemblyVersion": "5.0.17.0",
+            "fileVersion": "5.0.1722.21507"
           }
         },
         "compile": {
@@ -2172,10 +2172,6 @@
       "MP.Infrastructure.Helper/1.0.0": {
         "dependencies": {
           "HtmlSanitizer": "8.0.601",
-          "Microsoft.Extensions.Configuration": "7.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
@@ -2202,7 +2198,11 @@
       },
       "MP.Infrastructure.Mailer/1.0.0": {
         "dependencies": {
-          "MP.Core.Application": "1.0.0"
+          "MP.Core.Application": "1.0.0",
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0"
         },
         "runtime": {
           "MP.Infrastructure.Mailer.dll": {}
@@ -2215,6 +2215,7 @@
         "dependencies": {
           "MP.Core.Application": "1.0.0",
           "MP.Core.Domain": "1.0.0",
+          "MP.Infrastructure.Logger": "1.0.0",
           "Microsoft.EntityFrameworkCore": "5.0.12",
           "Microsoft.EntityFrameworkCore.Abstractions": "5.0.12",
           "Microsoft.EntityFrameworkCore.Analyzers": "5.0.12",
@@ -2232,7 +2233,11 @@
       "MP.Infrastructure.Persistance.Redis/1.0.0": {
         "dependencies": {
           "MP.Core.Application": "1.0.0",
-          "Microsoft.Extensions.Caching.StackExchangeRedis": "7.0.1"
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "7.0.1",
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0"
         },
         "runtime": {
           "MP.Infrastructure.Persistance.Redis.dll": {}
@@ -3904,12 +3909,12 @@
       "path": "mediatr.extensions.microsoft.dependencyinjection/11.0.0",
       "hashPath": "mediatr.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.12": {
+    "Microsoft.AspNetCore.Authentication.JwtBearer/5.0.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3JwsAApGFKFBVvlV8vMNdF04Mb8zPuHT5q8sunwNTbaN4JtjXLVGKAyUCy+I1JeqP+3EKfZxe3wMj4fVEOLKlA==",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/5.0.12",
-      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.5.0.12.nupkg.sha512"
+      "sha512": "sha512-jXMB2+jOG9JvGVCjsKvc5Bo1iSgzdbQw+Iq3BM+eIZ1inDg8rnEVUcWKpRevi9Z6F1/UnSJZ0+rhElT2/aVhhQ==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/5.0.17",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.5.0.17.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
       "type": "package",

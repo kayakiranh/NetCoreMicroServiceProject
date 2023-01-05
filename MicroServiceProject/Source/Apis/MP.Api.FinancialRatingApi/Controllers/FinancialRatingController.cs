@@ -41,15 +41,23 @@ namespace MP.Api.FinancialRatingApi.Controllers
             if (customer.Id == 0)
             {
                 _loggerRepository.Insert(LogTypes.Information, "ConnectAnyFinancialService BadRequest", null, customer, model);
-                return BadRequest();
+                return BadRequest("Customer Not Found");
             }
 
             //Fake client call
-            FinancialApiResponse fakeApiResponse = await FakeApiClient(model.IdentityNumber);
+            FinancialApiRequest request = new FinancialApiRequest
+            {
+                ApiKey = _configuration.GetSection("FinancialApi:ApiKey").Value,
+                ApiSecretKey = _configuration.GetSection("FinancialApi:ApiSecretKey").Value,
+                Identity = model.IdentityNumber
+            };
+
+            FinancialApiResponse fakeApiResponse = await FakeApiClient(request);
             if (fakeApiResponse == null)
             {
                 _loggerRepository.Insert(LogTypes.Error, "ConnectAnyFinancialService BadRequest", null, customer, model);
                 _mailerRepository.SendToAdmin(EmailTemplates.FinancialApiError, model);
+                return BadRequest("Third Party Api Doesnt Work");
             }
 
             //Fake calculate
@@ -65,15 +73,9 @@ namespace MP.Api.FinancialRatingApi.Controllers
             return Ok(score);
         }
 
-        private async Task<FinancialApiResponse> FakeApiClient(string identity)
+        private async Task<FinancialApiResponse> FakeApiClient(FinancialApiRequest request)
         {
-            _loggerRepository.Insert(LogTypes.Information, "FakeApiClient call", null, identity);
-            FinancialApiRequest request = new FinancialApiRequest
-            {
-                ApiKey = _configuration.GetSection("FinancialApi:ApiKey").Value,
-                ApiSecretKey = _configuration.GetSection("FinancialApi:ApiSecretKey").Value,
-                Identity = identity
-            };
+            _loggerRepository.Insert(LogTypes.Information, "FakeApiClient call", null, request.Identity);
 
             return await Task.FromResult(new FinancialApiResponse
             {
@@ -91,7 +93,7 @@ namespace MP.Api.FinancialRatingApi.Controllers
             });
         }
 
-        private class FinancialApiResponse
+        private sealed class FinancialApiResponse
         {
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -106,7 +108,7 @@ namespace MP.Api.FinancialRatingApi.Controllers
             public bool InsideBlackList { get; set; }
         }
 
-        private class FinancialApiRequest
+        private sealed class FinancialApiRequest
         {
             public string Identity { get; set; }
             public string ApiKey { get; set; }

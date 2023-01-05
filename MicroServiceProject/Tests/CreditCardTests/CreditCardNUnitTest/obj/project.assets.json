@@ -457,7 +457,7 @@
       },
       "MP.Infrastructure.Helper/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
+        "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "HtmlSanitizer": "8.0.601",
           "Newtonsoft.Json": "13.0.2"

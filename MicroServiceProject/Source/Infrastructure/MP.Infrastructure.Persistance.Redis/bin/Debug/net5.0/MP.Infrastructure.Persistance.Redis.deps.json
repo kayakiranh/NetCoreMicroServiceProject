@@ -9,7 +9,11 @@
       "MP.Infrastructure.Persistance.Redis/1.0.0": {
         "dependencies": {
           "MP.Core.Application": "1.0.0",
-          "Microsoft.Extensions.Caching.StackExchangeRedis": "7.0.1"
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "7.0.1",
+          "Microsoft.Extensions.Configuration": "7.0.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
+          "Microsoft.Extensions.Configuration.Json": "7.0.0"
         },
         "runtime": {
           "MP.Infrastructure.Persistance.Redis.dll": {}
@@ -566,10 +570,6 @@
       "MP.Infrastructure.Helper/1.0.0": {
         "dependencies": {
           "HtmlSanitizer": "8.0.601",
-          "Microsoft.Extensions.Configuration": "7.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0",
           "Newtonsoft.Json": "13.0.2"
         },
         "runtime": {
