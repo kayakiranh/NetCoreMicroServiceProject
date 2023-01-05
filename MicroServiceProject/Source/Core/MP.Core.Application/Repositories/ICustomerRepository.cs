@@ -13,5 +13,7 @@ namespace MP.Core.Application.Repositories
         public Task<Customer> GetByIdentityNumber(string identityNumber);
 
         public Task<Customer> GetByToken(string token);
+
+        public Task<Customer> RefreshToken(string token);
     }
 }

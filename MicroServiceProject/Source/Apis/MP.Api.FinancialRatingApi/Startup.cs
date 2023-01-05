@@ -22,6 +22,7 @@ namespace MP.Api.FinancialRatingApi
     public class Startup
     {
         public Startup(IConfiguration configuration, IWebHostEnvironment env) { Configuration = configuration; Env = env; }
+
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Env { get; }
 

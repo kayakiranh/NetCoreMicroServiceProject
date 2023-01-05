@@ -9,3 +9,4 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Core\MP.Core.Domain\obj\Debug\net5.0\MP.Core.Domain.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Core\MP.Core.Domain\obj\Debug\net5.0\ref\MP.Core.Domain.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Core\MP.Core.Domain\obj\Debug\net5.0\MP.Core.Domain.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Core\MP.Core.Domain\obj\Debug\net5.0\MP.Core.Domain.csproj.AssemblyReference.cache

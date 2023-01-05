@@ -28,7 +28,7 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<IQueryable<T>> GetAll2()
+        public IQueryable<T> GetAllIQueryable()
         {
             return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }

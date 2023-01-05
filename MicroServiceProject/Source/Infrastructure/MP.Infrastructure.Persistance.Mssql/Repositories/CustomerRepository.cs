@@ -31,14 +31,31 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
         {
             if (identityNumber.StringSecurityValidation() == "") return new Customer();
 
-            return await _dbContext.Customers.SingleOrDefaultAsync(x => x.IdentityNumber == identityNumber);
+            Customer customer = await _dbContext.Customers.AsNoTracking().SingleOrDefaultAsync(x => x.IdentityNumber == identityNumber);
+            if (customer == null) return Customer.EmptyCustomer();
+            return customer;
         }
 
         public async Task<Customer> GetByToken(string token)
         {
             if (token.StringSecurityValidation() == "") return new Customer();
 
-            return await _dbContext.Customers.SingleOrDefaultAsync(x => x.Token == token);
+            Customer customer = await _dbContext.Customers.AsNoTracking().SingleOrDefaultAsync(x => x.Token == token);
+            if (customer == null) return Customer.EmptyCustomer();
+            return customer;
+        }
+
+        public async Task<Customer> RefreshToken(string token)
+        {
+            if (token.StringSecurityValidation() == "") return new Customer();
+
+            Customer customer = await _dbContext.Customers.SingleOrDefaultAsync(x => x.Token == token);
+            if (customer == null) return Customer.EmptyCustomer();
+
+            customer.Token = GenerateToken(customer.EmailAddress);
+            _dbContext.Update(customer);
+            _dbContext.SaveChanges();
+            return customer;
         }
 
         public async Task<Customer> Login(string email, string password)
@@ -47,8 +64,17 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
             password = password.Encrypt();
 
             Customer customer = await _dbContext.Customers.SingleOrDefaultAsync(x => x.EmailAddress == email && x.Password == password && x.Status == (int)EntityStatus.Active);
-            if (customer.Id == 0) return new Customer();
+            if (customer == null) return Customer.EmptyCustomer();
 
+            customer.Token = GenerateToken(customer.EmailAddress);
+            _dbContext.Update(customer);
+            _dbContext.SaveChanges();
+
+            return customer;
+        }
+
+        private string GenerateToken(string email)
+        {
             JwtSecurityTokenHandler tokenHandler = new();
             byte[] tokenKey = Encoding.UTF8.GetBytes(_configuration.GetSection("JWT:Key").Value);
             SecurityTokenDescriptor tokenDescriptor = new()
@@ -62,10 +88,7 @@ namespace MP.Infrastructure.Persistance.Mssql.Repositories
             };
             SecurityToken securityToken = tokenHandler.CreateToken(tokenDescriptor);
 
-            customer.Token = tokenHandler.WriteToken(securityToken);
-            _dbContext.Update(customer);
-
-            return customer;
+            return tokenHandler.WriteToken(securityToken);
         }
     }
 }

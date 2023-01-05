@@ -1,5 +1,6 @@
 ﻿using MP.Core.Domain.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MP.Core.Application.Repositories
@@ -11,6 +12,7 @@ namespace MP.Core.Application.Repositories
     public interface IGenericRepository<T> where T : BaseEntity
     {
         public Task<List<T>> GetAll();
+        public IQueryable<T> GetAllIQueryable();
 
         public Task<int> GetAllCount();
 

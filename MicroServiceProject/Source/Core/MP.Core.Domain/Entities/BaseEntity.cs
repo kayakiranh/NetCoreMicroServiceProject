@@ -14,6 +14,6 @@ namespace MP.Core.Domain.Entities
         public int Id { get; set; } //Int primary key, 0,1,2,3,..
 
         public DateTime Created { get; set; } = DateTime.Now; //Created Time
-        public int Status { get; set; } = (int)EntityStatus.None; //Status
+        public int Status { get; set; } = (int)EntityStatus.Active; //Status
     }
 }

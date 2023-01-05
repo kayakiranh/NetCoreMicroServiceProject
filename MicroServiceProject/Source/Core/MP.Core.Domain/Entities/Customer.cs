@@ -33,9 +33,27 @@ namespace MP.Core.Domain.Entities
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
-        public decimal MonthlyIncome { get; set; } //Monthly income, salary + other incomes
+        public decimal MonthlyIncome { get; set; } = 0; //Monthly income, salary + other incomes
 
         [Required]
-        public string Token { get; set; } = ""; //JWT token
+        public string Token { get; set; } = string.Empty; //JWT token
+
+        //Empty Customer
+        public static Customer EmptyCustomer()
+        {
+            return new Customer
+            {
+                Id = 0,
+                Created = DateTime.Now,
+                Status = 0,
+                FullName = string.Empty,
+                IdentityNumber = string.Empty,
+                Phone = string.Empty,
+                EmailAddress = string.Empty,
+                Password = string.Empty,
+                MonthlyIncome = 0,
+                Token = string.Empty
+            };
+        }
     }
 }

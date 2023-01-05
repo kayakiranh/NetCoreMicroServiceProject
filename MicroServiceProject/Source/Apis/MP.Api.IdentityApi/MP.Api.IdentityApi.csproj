@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -16,6 +16,10 @@
     <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Mailer\MP.Infrastructure.Mailer.csproj" />
     <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Mssql\MP.Infrastructure.Persistance.Mssql.csproj" />
     <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Redis\MP.Infrastructure.Persistance.Redis.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>
