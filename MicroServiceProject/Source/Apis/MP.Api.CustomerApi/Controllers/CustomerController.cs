@@ -57,17 +57,6 @@ namespace MP.Api.CustomerApi.Controllers
             return Ok(response);
         }
 
-        [HttpPost("login")]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ApiResponse>> Login([FromBody] CustomerLoginCommand command)
-        {
-            ApiResponse response = await _mediator.Send(command);
-
-            if (!response.Status) return BadRequest(response);
-
-            return Ok(response);
-        }
 
         [HttpGet("list")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
@@ -96,7 +85,7 @@ namespace MP.Api.CustomerApi.Controllers
         [HttpGet("by-identity")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ApiResponse>> v(CustomerGetByIdentityNumberQuery query)
+        public async Task<ActionResult<ApiResponse>> ByIdentity(CustomerGetByIdentityNumberQuery query)
         {
             ApiResponse response = await _mediator.Send(query);
 

@@ -1,13 +1,6 @@
 {
   "GlobalConfiguration": {
-    "RequestIdKey": "X-Correlation-Id",
-    "BaseUrl": "https://localhost:44364",
-    "RateLimitOptions": {
-      "DisableRateLimitHeaders": true,
-      "QuotaExceededMessage": "You sent 100 request in 1 hour. Need to wait or upgrade membership.",
-      "httptatusCode": 999,
-      "ClientIdHeader": "Microservice Project"
-    }
+    "BaseUrl": "https://localhost:44364/"
   },
   "Routes": [
     {
@@ -23,14 +16,13 @@
         "Type": "LeastConnection"
       },
       "RateLimitOptions": {
-        "ClientWhitelist": [ "localhost" ],
+        "ClientWhitelist": [],
         "EnableRateLimiting": true,
         "Period": "1h",
         "PeriodTimespan": 1,
         "Limit": 100
       },
-      "SwaggerKey": "creditcard",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "UpstreamPathTemplate": "/creditcard"
     },
     {
@@ -47,14 +39,13 @@
         "Type": "LeastConnection"
       },
       "RateLimitOptions": {
-        "ClientWhitelist": [ "localhost" ],
+        "ClientWhitelist": [],
         "EnableRateLimiting": true,
         "Period": "1h",
         "PeriodTimespan": 1,
         "Limit": 100
       },
-      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
-      "SwaggerKey": "customer"
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/api/v1/financialrating",
@@ -70,14 +61,13 @@
         "Type": "LeastConnection"
       },
       "RateLimitOptions": {
-        "ClientWhitelist": [ "localhost" ],
+        "ClientWhitelist": [],
         "EnableRateLimiting": true,
         "Period": "1h",
         "PeriodTimespan": 1,
         "Limit": 100
       },
-      "UpstreamHttpMethod": [ "Post" ],
-      "SwaggerKey": "financialrating"
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
       "DownstreamPathTemplate": "/api/v1/auth",
@@ -93,56 +83,13 @@
         "Type": "LeastConnection"
       },
       "RateLimitOptions": {
-        "ClientWhitelist": [ "localhost" ],
+        "ClientWhitelist": [],
         "EnableRateLimiting": true,
         "Period": "1h",
         "PeriodTimespan": 1,
         "Limit": 100
       },
-      "UpstreamHttpMethod": [ "Post" ],
-      "SwaggerKey": "financialrating"
-    }
-  ],
-  "SwaggerEndPoints": [
-    {
-      "Key": "creditcard",
-      "Config": [
-        {
-          "Name": "Credit Card API",
-          "Version": "v1",
-          "Url": "https://localhost:44344/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "customer",
-      "Config": [
-        {
-          "Name": "Customer API",
-          "Version": "v1",
-          "Url": "https://localhost:44372/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "financialrating",
-      "Config": [
-        {
-          "Name": "Financial Rating API",
-          "Version": "v1",
-          "Url": "https://localhost:44359/swagger/v1/swagger.json"
-        }
-      ]
-    },
-    {
-      "Key": "auth",
-      "Config": [
-        {
-          "Name": "Auth API",
-          "Version": "v1",
-          "Url": "https://localhost:44334/swagger/v1/swagger.json"
-        }
-      ]
+      "UpstreamHttpMethod": [ "POST" ]
     }
   ]
 }

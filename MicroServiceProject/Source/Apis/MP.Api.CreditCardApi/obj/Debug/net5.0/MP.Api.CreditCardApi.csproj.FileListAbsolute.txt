@@ -108,3 +108,17 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\obj\Debug\net5.0\ref\MP.Api.CreditCardApi.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\obj\Debug\net5.0\MP.Api.CreditCardApi.pdb
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\obj\Debug\net5.0\MP.Api.CreditCardApi.genruntimeconfig.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.AspNetCore.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Extensions.Hosting.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Extensions.Logging.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Extensions.Logging.File.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Formatting.Compact.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Settings.AppSettings.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Settings.Configuration.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.Async.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.Console.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.File.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll
