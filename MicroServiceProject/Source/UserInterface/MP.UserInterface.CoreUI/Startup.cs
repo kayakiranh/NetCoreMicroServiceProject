@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MP.Infrastructure.Persistance.Mssql;
@@ -16,20 +15,16 @@ namespace MP.UserInterface.CoreUI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
+            if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
+            app.Use(async (context, next) => { await next(); });
+            app.UseHttpsRedirection();
+            app.UseResponseCompression();
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseCors();
+            app.UseHsts();
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

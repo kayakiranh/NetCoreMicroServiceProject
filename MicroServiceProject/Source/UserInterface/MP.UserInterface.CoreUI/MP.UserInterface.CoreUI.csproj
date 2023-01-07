@@ -8,4 +8,11 @@
     <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Mssql\MP.Infrastructure.Persistance.Mssql.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

@@ -62,7 +62,6 @@ namespace MP.Api.IdentityApi.Controllers
                 return BadRequest("Token Not Found");
             }
 
-
             return Ok(customer);
         }
 

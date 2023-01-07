@@ -57,8 +57,6 @@ namespace MP.Api.CustomerApi.Controllers
             return Ok(response);
         }
 
-        //public async Task<List<CreditCard>> ListByType(CreditCardTypes creditCardType)
-
         [HttpGet("list")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]

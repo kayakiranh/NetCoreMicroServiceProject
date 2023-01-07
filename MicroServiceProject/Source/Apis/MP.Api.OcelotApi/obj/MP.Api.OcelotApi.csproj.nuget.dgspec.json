@@ -60,10 +60,6 @@
             "Ocelot": {
               "target": "Package",
               "version": "[16.0.0, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.4.0, )"
             }
           },
           "imports": [

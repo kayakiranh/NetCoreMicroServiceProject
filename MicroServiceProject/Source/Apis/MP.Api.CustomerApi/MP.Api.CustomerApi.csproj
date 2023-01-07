@@ -18,4 +18,8 @@
     <ProjectReference Include="..\..\Infrastructure\MP.Infrastructure.Persistance.Redis\MP.Infrastructure.Persistance.Redis.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+
 </Project>
