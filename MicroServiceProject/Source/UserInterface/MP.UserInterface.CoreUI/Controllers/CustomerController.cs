@@ -25,7 +25,7 @@ namespace MP.UserInterface.CoreUI.Controllers
         }
 
         [Authorize]
-        public IActionResult OldApplications()
+        public IActionResult Applications()
         {
             return View();
         }
