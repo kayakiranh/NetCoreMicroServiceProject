@@ -93,7 +93,6 @@ namespace MP.Api.IdentityApi
         {
             if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
             app.Use(async (context, next) => { await next(); });
-            app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseRouting();
             app.UseAuthentication();

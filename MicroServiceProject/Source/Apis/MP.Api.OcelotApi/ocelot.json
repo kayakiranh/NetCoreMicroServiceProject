@@ -1,17 +1,17 @@
 {
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:44364/"
+    "BaseUrl": "http://localhost:51214"
   },
   "Routes": [
     {
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44344
+          "Port": 44385
         }
       ],
       "DownstreamPathTemplate": "/api/v1/creditcard",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "LoadBalancerOptions": {
         "Type": "LeastConnection"
       },
@@ -27,11 +27,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/customer",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44372
+          "Port": 44326
         }
       ],
       "UpstreamPathTemplate": "/customer",
@@ -49,11 +49,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/financialrating",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44359
+          "Port": 44302
         }
       ],
       "UpstreamPathTemplate": "/financialrating",
@@ -71,11 +71,11 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/auth",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 44334
+          "Port": 44305
         }
       ],
       "UpstreamPathTemplate": "/auth",
