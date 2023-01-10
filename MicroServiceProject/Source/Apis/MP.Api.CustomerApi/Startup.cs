@@ -21,7 +21,8 @@ namespace MP.Api.CustomerApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IWebHostEnvironment env) { Configuration = configuration; Env = env; }
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
+        { Configuration = configuration; Env = env; }
 
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Env { get; }
@@ -69,7 +70,7 @@ namespace MP.Api.CustomerApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için 'http://localhost:44305/auth/test-user' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
+                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için 'https://localhost:44334/auth/test-user' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
@@ -93,6 +94,7 @@ namespace MP.Api.CustomerApi
         {
             if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
             app.Use(async (context, next) => { await next(); });
+            app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseRouting();
             app.UseAuthentication();

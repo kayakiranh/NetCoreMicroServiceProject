@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Ocelot.DependencyInjection;
 
 namespace MP.Api.OcelotApi
 {
@@ -13,12 +12,9 @@ namespace MP.Api.OcelotApi
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args).ConfigureServices(services =>
+            Host.CreateDefaultBuilder(args).ConfigureAppConfiguration((host, config) =>
             {
-                services.AddOcelot();
-            }).ConfigureAppConfiguration((host, config) =>
-            {
-                config.AddJsonFile("ocelot.json", true, true).AddJsonFile("appsettings.json",true,true);
+                config.AddJsonFile("ocelot.json", true, true).AddJsonFile("appsettings.json", true, true);
             })
             .ConfigureWebHostDefaults(webBuilder =>
             {

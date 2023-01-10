@@ -69,7 +69,7 @@ namespace MP.Api.IdentityApi
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
                     In = ParameterLocation.Header,
-                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için 'http://localhost:44305/auth/test-user' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
+                    Description = "'Bearer' kelimesinden sonra boşluk bırakarak tokenı yazınız. Token almak için 'https://localhost:44334/auth/test-user' adresini kullanın\r\n\r\nÖrnek: \"Bearer xxx\"",
                 });
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                 {
@@ -93,6 +93,7 @@ namespace MP.Api.IdentityApi
         {
             if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }
             app.Use(async (context, next) => { await next(); });
+            app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseRouting();
             app.UseAuthentication();

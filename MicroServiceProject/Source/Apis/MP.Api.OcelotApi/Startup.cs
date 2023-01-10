@@ -8,6 +8,8 @@ using MP.Infrastructure.Logger;
 using MP.Infrastructure.Mailer;
 using MP.Infrastructure.Persistance.Mssql;
 using MP.Infrastructure.Persistance.Redis;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using System.IO.Compression;
 using System.Reflection;
 
@@ -16,11 +18,13 @@ namespace MP.Api.OcelotApi
     public class Startup
     {
         public Startup(IConfiguration configuration, IWebHostEnvironment env) { Configuration = configuration; Env = env; }
+
         public IWebHostEnvironment Env { get; }
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOcelot();
             services.AddOptions();
             services.AddControllers();
             services.AddMediatR(Assembly.GetExecutingAssembly());
@@ -33,12 +37,13 @@ namespace MP.Api.OcelotApi
             services.AddCors(options => { options.AddDefaultPolicy(builder => { builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod(); }); });
             services.Configure<BrotliCompressionProviderOptions>(options => { options.Level = CompressionLevel.Optimal; });
             services.AddResponseCompression(options => { options.Providers.Add<BrotliCompressionProvider>(); });
-
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.Use(async (context, next) => { await next(); });
+            await app.UseOcelot();
+            app.UseHttpsRedirection();
             app.UseResponseCompression();
             app.UseRouting();
             app.UseAuthentication();

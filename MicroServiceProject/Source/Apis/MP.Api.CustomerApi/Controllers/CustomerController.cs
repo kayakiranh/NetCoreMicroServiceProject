@@ -57,7 +57,6 @@ namespace MP.Api.CustomerApi.Controllers
             return Ok(response);
         }
 
-
         [HttpGet("list")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
