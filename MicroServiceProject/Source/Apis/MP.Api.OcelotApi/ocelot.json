@@ -10,23 +10,85 @@
           "Port": 44344
         }
       ],
-      "DownstreamPathTemplate": "/api/creditcard/list",
+      "DownstreamPathTemplate": "/api/creditcard/insert",
       "DownstreamScheme": "https",
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection"
-      },
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1h",
-        "PeriodTimespan": 1,
-        "Limit": 100
-      },
-      "UpstreamHttpMethod": [ "GET" ],
-      "UpstreamPathTemplate": "/creditcardlist"
+      "UpstreamPathTemplate": "/creditcard-insert",
+      "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/customer",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "DownstreamPathTemplate": "/api/creditcard/remove",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/creditcard-remove",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "DownstreamPathTemplate": "/api/creditcard/update",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/creditcard-update",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "DownstreamPathTemplate": "/api/creditcard/list",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/creditcard-list",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "DownstreamPathTemplate": "/api/creditcard/by-bank",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/creditcard-list-by-bank",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "DownstreamPathTemplate": "/api/creditcard/by-financial-score",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/creditcard-list-by-financial-score",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44344
+        }
+      ],
+      "DownstreamPathTemplate": "/api/creditcard/by-type",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/creditcard-list-by-type",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer/insert",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -34,18 +96,68 @@
           "Port": 44372
         }
       ],
-      "UpstreamPathTemplate": "/customer",
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection"
-      },
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1h",
-        "PeriodTimespan": 1,
-        "Limit": 100
-      },
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+      "UpstreamPathTemplate": "/customer-insert",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer/remove",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44372
+        }
+      ],
+      "UpstreamPathTemplate": "/customer-remove",
+      "UpstreamHttpMethod": [ "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer/update",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44372
+        }
+      ],
+      "UpstreamPathTemplate": "/customer-update",
+      "UpstreamHttpMethod": [ "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer/list",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44372
+        }
+      ],
+      "UpstreamPathTemplate": "/customer-list",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer/by-token",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44372
+        }
+      ],
+      "UpstreamPathTemplate": "/customer-by-token",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customer/by-identity",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44372
+        }
+      ],
+      "UpstreamPathTemplate": "/customer-list-by-identity",
+      "UpstreamHttpMethod": [ "GET" ]
     },
     {
       "DownstreamPathTemplate": "/api/financialrating/calculate",
@@ -56,11 +168,11 @@
           "Port": 44359
         }
       ],
-      "UpstreamPathTemplate": "/financialrating",
+      "UpstreamPathTemplate": "/financialrating-calculate",
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/v1/auth",
+      "DownstreamPathTemplate": "/api/auth/login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -68,17 +180,43 @@
           "Port": 44334
         }
       ],
-      "UpstreamPathTemplate": "/auth",
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection"
-      },
-      "RateLimitOptions": {
-        "ClientWhitelist": [],
-        "EnableRateLimiting": true,
-        "Period": "1h",
-        "PeriodTimespan": 1,
-        "Limit": 100
-      },
+      "UpstreamPathTemplate": "/auth-login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/check",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44334
+        }
+      ],
+      "UpstreamPathTemplate": "/auth-check",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/refresh",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44334
+        }
+      ],
+      "UpstreamPathTemplate": "/auth-refresh",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/test-user",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44334
+        }
+      ],
+      "UpstreamPathTemplate": "/auth-test-user",
       "UpstreamHttpMethod": [ "POST" ]
     }
   ]

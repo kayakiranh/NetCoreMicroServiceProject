@@ -51,7 +51,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MP.UserInterface.VueUI", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditCardNUnitTest", "Tests\CreditCardTests\CreditCardNUnitTest\CreditCardNUnitTest.csproj", "{43DB448C-F80E-4632-827F-5FB45873DA33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.Api.IdentityApi", "Source\Apis\MP.Api.IdentityApi\MP.Api.IdentityApi.csproj", "{76BF9A92-9C0E-46BA-B822-E7971C6217F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MP.Api.IdentityApi", "Source\Apis\MP.Api.IdentityApi\MP.Api.IdentityApi.csproj", "{76BF9A92-9C0E-46BA-B822-E7971C6217F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.Infrastructure.Persistance.PostgreSql", "Source\Infrastructure\MP.Infrastructure.Persistance.PostgreSql\MP.Infrastructure.Persistance.PostgreSql.csproj", "{E13B70DD-DBC4-48FD-83D5-1AEE0C5422B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.Infrastructure.Queue.Kafka", "Source\Infrastructure\MP.Infrastructure.Queue.Kafka\MP.Infrastructure.Queue.Kafka.csproj", "{667AC71F-946E-426C-B33F-9F3FC77D5940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MP.Infrastructure.Queue.RabbitMq", "Source\Infrastructure\MP.Infrastructure.Queue.RabbitMq\MP.Infrastructure.Queue.RabbitMq.csproj", "{0A94261A-6A31-4CA8-88FB-C11D7AB84BB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -115,6 +121,18 @@ Global
 		{76BF9A92-9C0E-46BA-B822-E7971C6217F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76BF9A92-9C0E-46BA-B822-E7971C6217F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76BF9A92-9C0E-46BA-B822-E7971C6217F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E13B70DD-DBC4-48FD-83D5-1AEE0C5422B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E13B70DD-DBC4-48FD-83D5-1AEE0C5422B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E13B70DD-DBC4-48FD-83D5-1AEE0C5422B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E13B70DD-DBC4-48FD-83D5-1AEE0C5422B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{667AC71F-946E-426C-B33F-9F3FC77D5940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{667AC71F-946E-426C-B33F-9F3FC77D5940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{667AC71F-946E-426C-B33F-9F3FC77D5940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{667AC71F-946E-426C-B33F-9F3FC77D5940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A94261A-6A31-4CA8-88FB-C11D7AB84BB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A94261A-6A31-4CA8-88FB-C11D7AB84BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A94261A-6A31-4CA8-88FB-C11D7AB84BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A94261A-6A31-4CA8-88FB-C11D7AB84BB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -142,6 +160,9 @@ Global
 		{1AABE612-7021-4FC4-A13D-3154BA98F042} = {F461707C-B906-430D-8294-5FC757CDEFA7}
 		{43DB448C-F80E-4632-827F-5FB45873DA33} = {8A7C5ADD-7997-4825-AECA-CEBD7E8D905A}
 		{76BF9A92-9C0E-46BA-B822-E7971C6217F2} = {09EEDB7C-3833-4848-BD1C-E21108B48EB6}
+		{E13B70DD-DBC4-48FD-83D5-1AEE0C5422B4} = {ED7AB605-A44E-4497-A7BA-60C86F71FA0B}
+		{667AC71F-946E-426C-B33F-9F3FC77D5940} = {ED7AB605-A44E-4497-A7BA-60C86F71FA0B}
+		{0A94261A-6A31-4CA8-88FB-C11D7AB84BB9} = {ED7AB605-A44E-4497-A7BA-60C86F71FA0B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E737A0F-F240-4289-B15C-ECEAE389CDE8}
