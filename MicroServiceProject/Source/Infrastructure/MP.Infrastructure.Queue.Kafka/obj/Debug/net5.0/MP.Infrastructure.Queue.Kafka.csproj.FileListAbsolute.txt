@@ -1,0 +1,12 @@
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\bin\Debug\net5.0\MP.Infrastructure.Queue.Kafka.deps.json
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\bin\Debug\net5.0\MP.Infrastructure.Queue.Kafka.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\bin\Debug\net5.0\ref\MP.Infrastructure.Queue.Kafka.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\bin\Debug\net5.0\MP.Infrastructure.Queue.Kafka.pdb
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.csproj.AssemblyReference.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.AssemblyInfoInputs.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.AssemblyInfo.cs
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.csproj.CoreCompileInputs.cache
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\ref\MP.Infrastructure.Queue.Kafka.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Infrastructure\MP.Infrastructure.Queue.Kafka\obj\Debug\net5.0\MP.Infrastructure.Queue.Kafka.pdb

@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlSanitizer" Version="8.0.601" />
+    <PackageReference Include="IronPdf" Version="2023.1.11416" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 

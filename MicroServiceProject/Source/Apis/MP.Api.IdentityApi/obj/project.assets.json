@@ -871,6 +871,18 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
+      "NRediSearch/2.2.79": {
+        "type": "package",
+        "dependencies": {
+          "StackExchange.Redis": "2.2.79"
+        },
+        "compile": {
+          "lib/net5.0/NRediSearch.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/NRediSearch.dll": {}
+        }
+      },
       "Pipelines.Sockets.Unofficial/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -1236,7 +1248,7 @@
           "lib/netstandard1.3/Serilog.Sinks.RollingFile.dll": {}
         }
       },
-      "StackExchange.Redis/2.2.4": {
+      "StackExchange.Redis/2.2.79": {
         "type": "package",
         "dependencies": {
           "Pipelines.Sockets.Unofficial": "2.2.0",
@@ -2955,7 +2967,8 @@
           "Microsoft.Extensions.Configuration": "7.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "7.0.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "7.0.0",
-          "Microsoft.Extensions.Configuration.Json": "7.0.0"
+          "Microsoft.Extensions.Configuration.Json": "7.0.0",
+          "NRediSearch": "2.2.79"
         },
         "compile": {
           "bin/placeholder/MP.Infrastructure.Persistance.Redis.dll": {}
@@ -4557,6 +4570,20 @@
         "packageIcon.png"
       ]
     },
+    "NRediSearch/2.2.79": {
+      "sha512": "z9wrQr4lJKtxoho0/pasJlZ7nbAIXtX+/oo7HG4g7UQ3JDJpJJQbtjYPYltM8X97Az40C4gyszIpPmgMVvaVsw==",
+      "type": "package",
+      "path": "nredisearch/2.2.79",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/NRediSearch.dll",
+        "lib/netcoreapp3.1/NRediSearch.dll",
+        "lib/netstandard2.0/NRediSearch.dll",
+        "nredisearch.2.2.79.nupkg.sha512",
+        "nredisearch.nuspec"
+      ]
+    },
     "Pipelines.Sockets.Unofficial/2.2.0": {
       "sha512": "7hzHplEIVOGBl5zOQZGX/DiJDHjq+RVRVrYgDiqXb6RriqWAdacXxp+XO9WSrATCEXyNOUOQg9aqQArsjase/A==",
       "type": "package",
@@ -5051,10 +5078,10 @@
         "serilog.sinks.rollingfile.nuspec"
       ]
     },
-    "StackExchange.Redis/2.2.4": {
-      "sha512": "wM0OuRyRaZTFndFRjIOvas4jjkeclRJsmNm0eAx5tOju3SQisrLubNaSFT/dBypi4Vh1n7nYc1gWpw9L7ernOg==",
+    "StackExchange.Redis/2.2.79": {
+      "sha512": "cVk+SkWcfbeLHdCbaqzRwihBy/FkahpucmMHD7nr6364WGcy83aSSYEtksYByRY2z2AIBtsP2tj5ZtRAuNIARw==",
       "type": "package",
-      "path": "stackexchange.redis/2.2.4",
+      "path": "stackexchange.redis/2.2.79",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5068,7 +5095,7 @@
         "lib/netcoreapp3.1/StackExchange.Redis.xml",
         "lib/netstandard2.0/StackExchange.Redis.dll",
         "lib/netstandard2.0/StackExchange.Redis.xml",
-        "stackexchange.redis.2.2.4.nupkg.sha512",
+        "stackexchange.redis.2.2.79.nupkg.sha512",
         "stackexchange.redis.nuspec"
       ]
     },

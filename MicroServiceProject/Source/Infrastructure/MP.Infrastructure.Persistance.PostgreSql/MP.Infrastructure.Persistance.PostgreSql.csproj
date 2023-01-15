@@ -9,4 +9,9 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\MP.Core.Application\MP.Core.Application.csproj" />
+    <ProjectReference Include="..\MP.Infrastructure.Logger\MP.Infrastructure.Logger.csproj" />
+  </ItemGroup>
+
 </Project>

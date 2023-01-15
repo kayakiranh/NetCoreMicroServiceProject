@@ -122,3 +122,4 @@ C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\S
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.File.dll
 C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\Serilog.Sinks.RollingFile.dll
+C:\Users\husey\Documents\GitHub\NetCoreMicroServiceProject\MicroServiceProject\Source\Apis\MP.Api.CreditCardApi\bin\Debug\net5.0\NRediSearch.dll
