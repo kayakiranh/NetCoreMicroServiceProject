@@ -1,18 +1,14 @@
 ﻿using IronPdf;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MP.Infrastructure.Helper
 {
     public static class PdfGenerateHelper
     {
-        public static void GeneratePDF()
+        public static void GeneratePDF(int customerId, int creditCardId)
         {
             HtmlToPdf renderer = new HtmlToPdf();
-            renderer.RenderHtmlAsPdf("<h1>This is test file</h1>").SaveAs("Example.pdf");
+            renderer.RenderHtmlAsPdf($"<h1>Customer : {customerId}</h1><br><h1>Credit Card : {creditCardId}</h1>").SaveAs($"{customerId}-{creditCardId}-{new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds()}.pdf");
         }
     }
 }

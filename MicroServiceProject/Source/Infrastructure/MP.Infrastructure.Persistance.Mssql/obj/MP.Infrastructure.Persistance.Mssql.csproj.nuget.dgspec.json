@@ -197,6 +197,10 @@
               "target": "Package",
               "version": "[8.0.601, )"
             },
+            "IronPdf": {
+              "target": "Package",
+              "version": "[2023.1.11416, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.2, )"

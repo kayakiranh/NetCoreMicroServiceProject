@@ -11,5 +11,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\7.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\7.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Logging.Abstractions.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.dependencyinjection\7.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.DependencyInjection.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.dependencyinjection\7.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.DependencyInjection.targets')" />
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging\7.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Logging.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging\7.0.0\buildTransitive\netcoreapp2.0\Microsoft.Extensions.Logging.targets')" />
+    <Import Project="$(NuGetPackageRoot)ironpdf.native.chrome.windows\2023.1.11387\buildTransitive\netstandard2.0\IronPdf.Native.Chrome.Windows.targets" Condition="Exists('$(NuGetPackageRoot)ironpdf.native.chrome.windows\2023.1.11387\buildTransitive\netstandard2.0\IronPdf.Native.Chrome.Windows.targets')" />
   </ImportGroup>
 </Project>
